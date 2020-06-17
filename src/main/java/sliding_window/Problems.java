@@ -118,4 +118,57 @@ public class Problems {
         }
         return max;
     }
+
+    /**
+     * Find the longest length of substring with the same character with no more than k changes
+     */
+    public static int problem6(String s, int k){
+        if(s == null || s.length() == 0)
+            return 0;
+
+        int left = 0, right = 0, max = 0;
+        Map<Character, Integer> map = new HashMap<>();
+
+        for(; right < s.length(); right++){
+            char c = s.charAt(right);
+            map.put(c, map.getOrDefault(c, 0) + 1);
+
+            while((right - left + 1) - map.get(s.charAt(left))   > k){
+                c = s.charAt(left);
+                map.put(c, map.get(c) - 1);
+                if(map.get(c) == 0)
+                    map.remove(c);
+                left++;
+            }
+            max = Math.max(max, right - left + 1);
+        }
+        return max;
+    }
+
+    /**
+     * Find the longest contiguous subarray with all 1s given a binary subarray. Allowed up to k changes
+     */
+    public static int problem7(int[] arr, int k){
+        if(arr == null || arr.length == 0)
+            return 0;
+
+        int ones = 0, left = 0, right = 0, max = 0;
+        for(; right < arr.length; right++){
+            if(arr[right] == 1) ones++;
+
+            while((right - left + 1) - ones > k){
+                if(arr[left] == 1) ones--;
+                left++;
+            }
+            max = Math.max(max, right - left + 1);
+        }
+        return max;
+    }
+
+    /**
+     * Given a string and a pattern, find if a permutation of the pattern exists in the string
+     */
+    public static int problem8(String s, String pat){
+        return 0;
+    }
 }

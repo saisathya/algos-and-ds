@@ -36,4 +36,17 @@ public class ProblemsTest {
         assertEquals(2, Problems.problem5("abbbb"));
         assertEquals(3, Problems.problem5("abccde"));
     }
+
+    @Test
+    public void problem6(){
+        assertEquals(5, Problems.problem6("aabccbb", 2));
+        assertEquals(4, Problems.problem6("abbcb", 1));
+        assertEquals(3, Problems.problem6("abccde", 1));
+    }
+
+    @Test
+    public void problem7(){
+        assertEquals(6, Problems.problem7(new int[]{0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1}, 2));
+        assertEquals(9, Problems.problem7(new int[]{0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1}, 3));
+    }
 }
