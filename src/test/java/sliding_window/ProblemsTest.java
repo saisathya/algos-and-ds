@@ -1,6 +1,9 @@
 package sliding_window;
 
 import org.junit.Test;
+
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class ProblemsTest {
@@ -48,5 +51,26 @@ public class ProblemsTest {
     public void problem7(){
         assertEquals(6, Problems.problem7(new int[]{0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1}, 2));
         assertEquals(9, Problems.problem7(new int[]{0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1}, 3));
+    }
+
+    @Test
+    public void problem8(){
+        assertTrue(Problems.problem8("oidbcaf", "abc"));
+        assertFalse(Problems.problem8("odicf", "dc"));
+        assertTrue(Problems.problem8("bcdxabcdy", "bcdyabcdx"));
+        assertTrue(Problems.problem8("aaacb", "abc"));
+    }
+
+    @Test
+    public void problem9(){
+        assertEquals(Arrays.asList(1, 2), Problems.problem9("ppqp", "pq"));
+        assertEquals(Arrays.asList(2, 3, 4), Problems.problem9("abbcabc", "abc"));
+    }
+
+    @Test
+    public void problem10(){
+        assertEquals("abdec", Problems.problem10("aabdec", "abc"));
+        assertEquals("abc", Problems.problem10("abdabca", "abc"));
+        assertEquals("", Problems.problem10("adcad", "abc"));
     }
 }

@@ -168,7 +168,101 @@ public class Problems {
     /**
      * Given a string and a pattern, find if a permutation of the pattern exists in the string
      */
-    public static int problem8(String s, String pat){
-        return 0;
+    public static boolean problem8(String s, String pat){
+        if(s == null || pat == null)
+            return false;
+
+        Map<Character, Integer> map = new HashMap<>();
+        for(char c : pat.toCharArray())
+            map.put(c, map.getOrDefault(c, 0) + 1);
+
+        int left = 0, right = 0, matches = 0;
+
+        for(; right < s.length(); right++){
+            if(map.containsKey(s.charAt(right))){
+                map.put(s.charAt(right), map.get(s.charAt(right)) - 1);
+                if(map.get(s.charAt(right)) == 0)
+                    matches++;
+            }
+            if(matches == map.size())
+                return true;
+            if(right >= pat.length() - 1){
+                if(map.containsKey(s.charAt(left))){
+                    if(map.get(s.charAt(left)) == 0)
+                        matches--;
+                    map.put(s.charAt(left), map.get(s.charAt(left)) + 1);
+                }
+                left++;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *  Find starting position of all anagrams for a pattern in a string
+     */
+    public static List<Integer> problem9(String s, String pat){
+        if(s == null || pat == null)
+            return new ArrayList<>();
+
+        List<Integer> output = new ArrayList<>();
+        Map<Character, Integer> map = new HashMap<>();
+
+        for(char c : pat.toCharArray())
+            map.put(c, map.getOrDefault(c, 0) + 1);
+
+        int left = 0, right = 0, matches = 0;
+        for(; right < s.length(); right++){
+            if(map.containsKey(s.charAt(right))){
+                map.put(s.charAt(right), map.get(s.charAt(right)) - 1);
+                if(map.get(s.charAt(right)) == 0)
+                    matches++;
+            }
+            if(matches == map.size()) output.add(left);
+            if(right >= pat.length() - 1){
+                if(map.containsKey(s.charAt(left))){
+                    if(map.get(s.charAt(left)) == 0)
+                        matches--;
+                    map.put(s.charAt(left), map.get(s.charAt(left)) + 1);
+                }
+                left++;
+            }
+        }
+        return output;
+    }
+
+    /**
+     * Given a pattern, find the smallest substring such that it has all the characters in the pattern
+     */
+    public static String problem10(String s, String pat){
+        if(s == null || pat == null)
+            return null;
+
+        int left = 0, right = 0, matches = 0;
+        int start = 0, end = Integer.MAX_VALUE;
+        Map<Character, Integer> map = new HashMap<>();
+        for(char c : pat.toCharArray())
+            map.put(c, map.getOrDefault(c, 0) + 1);
+
+        for(; right < s.length(); right++){
+            if(map.containsKey(s.charAt(right))){
+                map.put(s.charAt(right), map.get(s.charAt(right)) - 1);
+                if(map.get(s.charAt(right)) == 0)
+                    matches++;
+            }
+            while(matches == map.size()){
+                if(right - left < end - start){
+                    end = right;
+                    start = left;
+                }
+                if(map.containsKey(s.charAt(left))){
+                    if(map.get(s.charAt(left)) == 0)
+                        matches--;
+                    map.put(s.charAt(left), map.get(s.charAt(left)) + 1);
+                }
+                left++;
+            }
+        }
+        return end == Integer.MAX_VALUE? "" : s.substring(start, end + 1);
     }
 }
