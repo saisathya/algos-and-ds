@@ -126,7 +126,7 @@ public class ProblemsTest {
                 assertEquals(len - (i / 2 + 1), head.value);
             head = head.next;
         }
-        assertTrue(head == null);
+        assertNull(head);
     }
 
 }
