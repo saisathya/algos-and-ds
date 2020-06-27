@@ -99,4 +99,29 @@ public class Problems {
         }
     }
 
+    public static int problem5(int[] arr, int target) throws IllegalArgumentException {
+        if(arr == null || arr.length < 3)
+            throw new IllegalArgumentException();
+        int closestVal = Integer.MAX_VALUE;
+        Arrays.sort(arr);
+        for(int i = 0; i < arr.length; i++){
+            int left = i + 1, right = arr.length - 1;
+            while(left < right){
+                int sum = arr[i] + arr[left] + arr[right];
+                if(Math.abs(sum - target) < Math.abs(closestVal - target))
+                    closestVal = sum;
+                if(sum == target){
+                    return target;
+                }
+                else if(sum < target){
+                    left++;
+                }
+                else{
+                    right--;
+                }
+            }
+        }
+        return closestVal;
+    }
+
 }

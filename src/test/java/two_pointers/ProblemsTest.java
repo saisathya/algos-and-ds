@@ -3,7 +3,7 @@ package two_pointers;
 import org.junit.Test;
 import java.util.*;
 import static org.junit.Assert.*;
-import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+import static org.hamcrest.collection.IsIterableContainingInAnyOrder.*;
 public class ProblemsTest {
 
     @Test
@@ -40,6 +40,13 @@ public class ProblemsTest {
     @Test
     public void problem4(){
         assertThat(Problems.problem4(new int[]{-3, 0, 1, 2, -1, 1, -2}), containsInAnyOrder(Arrays.asList(-3, 1, 2), Arrays.asList(-2, 0, 2), Arrays.asList(-2, 1, 1), Arrays.asList(-1, 0, 1)));
+        assertThat(Problems.problem4(new int[]{-5, 2, -1, -2, 3}), containsInAnyOrder(Arrays.asList(-5, 2, 3), Arrays.asList(-2, -1, 3)));
+    }
 
+    @Test
+    public void problem5(){
+        assertEquals(1, Problems.problem5(new int[]{-2, 0, 1, 2}, 2));
+        assertEquals(0, Problems.problem5(new int[]{-3, -1, 1, 2}, 1));
+        assertEquals(3, Problems.problem5(new int[]{1, 0, 1, 1}, 100));
     }
 }
