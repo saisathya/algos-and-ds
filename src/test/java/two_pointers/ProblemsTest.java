@@ -1,0 +1,45 @@
+package two_pointers;
+
+import org.junit.Test;
+import java.util.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+public class ProblemsTest {
+
+    @Test
+    public void problem1(){
+        assertArrayEquals(new int[]{1, 3},Problems.problem1(new int[]{1, 2, 3, 4, 6}, 6));
+        assertArrayEquals(new int[]{0, 2}, Problems.problem1(new int[]{2,  5, 9, 11}, 11));
+        assertArrayEquals(new int[]{-1, -1}, Problems.problem1(new int[]{2}, 5));
+    }
+
+    @Test
+    public void problem2(){
+        int[] one = new int[]{2, 3, 3, 3, 6, 9, 9};
+        int res = Problems.problem2(one);
+        assertEquals(4, res);
+        noDuplicates(one, 4);
+
+        one = new int[]{2, 2, 2, 11};
+        res = Problems.problem2(one);
+        assertEquals(2, res);
+        noDuplicates(one, 2);
+    }
+
+    public static void noDuplicates(int[] arr, int k){
+        for(int i = 1; i < k; i++)
+            assert(arr[i - 1] != arr[i]);
+    }
+
+    @Test
+    public void problem3(){
+        assertArrayEquals(new int[]{0, 1, 4, 4, 9}, Problems.problem3(new int[]{-2, -1, 0, 2, 3}));
+        assertArrayEquals(new int[]{0, 1, 1, 4, 9}, Problems.problem3(new int[]{-3, -1, 0, 1, 2}));
+    }
+
+    @Test
+    public void problem4(){
+        assertThat(Problems.problem4(new int[]{-3, 0, 1, 2, -1, 1, -2}), containsInAnyOrder(Arrays.asList(-3, 1, 2), Arrays.asList(-2, 0, 2), Arrays.asList(-2, 1, 1), Arrays.asList(-1, 0, 1)));
+
+    }
+}
