@@ -178,4 +178,58 @@ public class Problems {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+    /**
+     * Given two strings with backspace character represented with '#', check if they are the same
+     */
+    public static boolean problem8(String s1, String s2){
+        if(s1 == null || s2 == null)
+            throw new IllegalArgumentException();
+        int one = s1.length() - 1, two = s2.length() - 1, skip1 = 0, skip2 = 0;
+
+        while(one >= 0 && two >= 0){
+            if(s1.charAt(one) == '#'){
+                one--;
+                skip1++;
+            }
+            else if(skip1 > 0){
+                one--;
+                skip1--;
+            }
+            if(s2.charAt(two) == '#'){
+                two--;
+                skip2++;
+            }
+            else if(skip2 > 0){
+                two--;
+                skip2--;
+            }
+            if(skip1 == 0 && skip2 == 0){
+                if(s1.charAt(one) != s2.charAt(two)) return false;
+                one--;
+                two--;
+            }
+        }
+        return one == -1 && two == -1;
+    }
+
+    public static int problem9(int[] arr){
+        if(arr == null)
+            throw new IllegalArgumentException();
+        if(arr.length == 0) return 0;
+
+        int right = arr.length - 1;
+        for(; right > 0; right--){
+            if(arr[right] < arr[right - 1]) break;
+        }
+        if(right == 0)
+            return 0;
+        int left = 0;
+        for(; left < right; left++){
+            if(arr[right] < arr[left] || arr[left] > arr[left + 1])
+                break;
+
+        }
+        return right - left + 1;
+    }
 }

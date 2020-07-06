@@ -65,4 +65,20 @@ public class ProblemsTest {
         Problems.problem7(arr);
         assertArrayEquals(new int[]{0, 0, 1, 2, 2, 2}, arr);
     }
+
+    @Test
+    public void problem8(){
+        assertTrue(Problems.problem8("xy#z", "xzz#"));
+        assertFalse(Problems.problem8("xy#z", "xyz#"));
+        assertTrue(Problems.problem8("xp#", "xyz##"));
+        assertTrue(Problems.problem8("xywrrmp", "xywrrmu#p"));
+    }
+
+    @Test
+    public void problem9(){
+        assertEquals(5, Problems.problem9(new int[]{1, 2, 5, 3, 7, 10, 9, 12}));
+        assertEquals(0, Problems.problem9(new int[]{1, 2, 3}));
+        assertEquals(5, Problems.problem9(new int[]{1, 3, 2, 0, -1, 7, 10}));
+        assertEquals(3, Problems.problem9(new int[]{3, 2, 1}));
+    }
 }
