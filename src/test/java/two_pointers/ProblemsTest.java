@@ -49,4 +49,20 @@ public class ProblemsTest {
         assertEquals(0, Problems.problem5(new int[]{-3, -1, 1, 2}, 1));
         assertEquals(3, Problems.problem5(new int[]{1, 0, 1, 1}, 100));
     }
+
+    @Test
+    public void problem6(){
+        assertThat(Problems.problem6(new int[]{2, 5, 3, 10}, 30), containsInAnyOrder(Arrays.asList(2), Arrays.asList(5), Arrays.asList(3), Arrays.asList(10), Arrays.asList(2, 5),  Arrays.asList(5, 3)));
+        assertThat(Problems.problem6(new int[]{8, 2, 6, 5}, 50), containsInAnyOrder(Arrays.asList(8), Arrays.asList(2), Arrays.asList(6), Arrays.asList(5), Arrays.asList(8, 2), Arrays.asList(2, 6), Arrays.asList(6, 5)));
+    }
+
+    @Test
+    public void problem7(){
+        int[] arr = new int[]{1, 0, 2, 1, 0};
+        Problems.problem7(arr);
+        assertArrayEquals(new int[]{0, 0, 1, 1, 2}, arr);
+        arr = new int[]{2, 2, 0, 1, 2, 0};
+        Problems.problem7(arr);
+        assertArrayEquals(new int[]{0, 0, 1, 2, 2, 2}, arr);
+    }
 }

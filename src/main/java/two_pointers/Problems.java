@@ -124,4 +124,58 @@ public class Problems {
         return closestVal;
     }
 
+    /**
+     * Find all contiguous subarray with product lest that target
+     */
+    public static List<List<Integer>> problem6(int[] arr, int target){
+        if(arr == null || target < 0)
+            throw new IllegalArgumentException();
+        LinkedList<Integer> list = new LinkedList<>();
+        HashSet<List<Integer>> result = new HashSet<>();
+        int left = 0, right = 0, prod = 1;
+
+        for( ; right < arr.length; right++){
+            if(arr[right] < target)
+                result.add(Arrays.asList(arr[right]));
+            prod *= arr[right];
+            list.add(arr[right]);
+            while(prod >= target){
+                prod /= arr[left];
+                left++;
+                list.removeFirst();
+            }
+            result.add(new ArrayList<>(list));
+        }
+        return new ArrayList<>(result);
+    }
+
+    /**
+     * Given an array with 0s, 1s, 2s, sort them in place
+     */
+    public static void problem7(int[] arr) {
+        if (arr == null)
+            throw new IllegalArgumentException();
+        int left = 0, right = arr.length - 1, i = 0;
+
+        while(i <= right){
+            if(arr[i] == 0){
+                swap(arr, left, i);
+                i++;
+                left++;
+            }
+            else if(arr[i] == 1){
+                i++;
+            }
+            else{
+                swap(arr, right, i);
+                right--;
+            }
+        }
+    }
+
+    public static void swap(int[] arr, int i , int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
 }
