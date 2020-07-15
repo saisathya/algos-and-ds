@@ -20,4 +20,9 @@ public class Interval implements Comparable<Interval>{
         Interval i = (Interval) o;
         return i.start == start && i.end == end;
     }
+
+    @Override
+    public String toString(){
+        return "[" + start +", " + end + "]";
+    }
 }
