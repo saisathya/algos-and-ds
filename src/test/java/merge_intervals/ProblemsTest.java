@@ -1,6 +1,8 @@
 package merge_intervals;
 
 import org.junit.Test;
+
+import java.net.ProxySelector;
 import java.util.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
@@ -32,5 +34,13 @@ public class ProblemsTest {
         assertFalse(Problems.problem4(new Interval[]{new Interval(1, 4), new Interval(2, 5), new Interval(7, 9)}));
         assertTrue(Problems.problem4(new Interval[]{new Interval(6, 7), new Interval(2, 4), new Interval(8, 12)}));
         assertFalse(Problems.problem4(new Interval[]{new Interval(4, 5), new Interval(2, 3), new Interval(3, 6)}));
+    }
+
+    @Test
+    public void problem5(){
+        assertEquals(2, Problems.problem5(Arrays.asList(new Interval(1, 4), new Interval(2, 5), new Interval(7, 9))));
+        assertEquals(1, Problems.problem5(Arrays.asList(new Interval(6, 7), new Interval(2, 4), new Interval(8, 12))));
+        assertEquals(2, Problems.problem5(Arrays.asList(new Interval(1, 4), new Interval(2, 3), new Interval(3, 6))));
+        assertEquals(2, Problems.problem5(Arrays.asList(new Interval(4, 5), new Interval(2, 3), new Interval(2, 4), new Interval(3, 5))));
     }
 }

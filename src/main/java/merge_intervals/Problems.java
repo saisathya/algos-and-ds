@@ -116,12 +116,42 @@ public class Problems {
             return 0;
         Collections.sort(intervals);
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        for(int i = 0; i < intervals.size(); i++){
-            if(minHeap.isEmpty())
-                minHeap.add(intervals.get(i).end);
-            else if(intervals.get(i).start < minHeap.peek()){
-
+        minHeap.add(intervals.get(0).end);
+        for(int i = 1; i < intervals.size(); i++){
+            if(intervals.get(i).start >= minHeap.peek()) {
+                minHeap.poll();
             }
+            minHeap.add(intervals.get(i).end);
         }
+        return minHeap.size();
+    }
+
+    /**
+     * Given a list of times that employees work, find the common **free** time. Times for each employee is in chronological order
+     */
+    public static List<Interval> problem6(List<List<Interval>> hours){
+        if(hours == null || hours.isEmpty())
+            return new ArrayList<>();
+
+    }
+
+    public static List<Interval> invertHours(List<Interval> hours){
+        if(hours == null)
+            throw new IllegalArgumentException();
+        List<Interval> merged = new ArrayList<>();
+        merged.add(new Interval(hours.get(0).start, hours.get(0).end));
+        for(int i = 1; i < hours.size(); i++){
+            Interval curr = hours.get(i), last = merged.get(merged.size() - 1);
+            if(curr.start <= last.end)
+                last.end = Math.max(curr.end, last.end);
+            else
+                merged.add(new Interval(curr.start, curr.end));
+        }
+        List<Interval> inverted = new ArrayList<>();
+        inverted.add(new Interval(merged.get(0).end, Integer.MAX_VALUE));
+        for(int i = 0; i < merged.size(); i++){
+            inverted.add(new Interval(merged.get(i)))
+        }
+        return inverted;
     }
 }
