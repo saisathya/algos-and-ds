@@ -125,4 +125,52 @@ public class Problems {
         }
         return minHeap.size();
     }
+
+    public static List<Interval> problem6(List<List<Interval>> schedule){
+        if(schedule == null || schedule.isEmpty())
+            return new ArrayList<>();
+        PriorityQueue<EmployeeWrapper> minHeap = new PriorityQueue<>();
+
+        for(int i = 0; i < schedule.size(); i++)
+            minHeap.add(new EmployeeWrapper(schedule.get(i).get(0), i, 0));
+
+        List<Interval> output = new ArrayList<>();
+        Interval prev = minHeap.peek().interval;
+        while(!minHeap.isEmpty()){
+            EmployeeWrapper e = minHeap.poll();
+            if(e.interval.start > prev.end){
+                output.add(new Interval(prev.end, e.interval.start));
+                prev = e.interval;
+            }
+            else{
+                if(e.interval.end > prev.end)
+                    prev = e.interval;
+            }
+
+            List<Interval> employeeTimes = schedule.get(e.employeeIdx);
+            e.itemIdx++;
+            if(e.itemIdx < employeeTimes.size())
+                minHeap.add(new EmployeeWrapper(employeeTimes.get(e.itemIdx), e.employeeIdx, e.itemIdx));
+        }
+        System.out.println(output);
+        return output;
+    }
+
+    private static class EmployeeWrapper implements Comparable<EmployeeWrapper>{
+        Interval interval; int employeeIdx, itemIdx;
+
+        EmployeeWrapper(Interval interval, int employeeIdx, int itemIdx){
+            this.interval = interval;
+            this.employeeIdx = employeeIdx;
+            this.itemIdx = itemIdx;
+        }
+        @Override
+        public int compareTo(EmployeeWrapper o) {
+            return this.interval.compareTo(o.interval);
+        }
+        @Override
+        public String toString(){
+            return interval.toString();
+        }
+    }
 }
