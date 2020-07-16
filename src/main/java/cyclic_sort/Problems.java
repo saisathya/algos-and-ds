@@ -50,5 +50,5 @@ public class Problems {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
-    }
+    }//some changes
 }
