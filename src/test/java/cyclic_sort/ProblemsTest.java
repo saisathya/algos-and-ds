@@ -33,4 +33,17 @@ public class ProblemsTest {
         assertEquals(3, Problems.problem4(new int[]{2, 1, 3, 3, 5, 4}));
         assertEquals(4, Problems.problem4(new int[]{2, 4, 1, 4, 4}));
     }
+
+    @Test
+    public void problem5(){
+        assertArrayEquals(new int[]{2, 4}, Problems.problem5(new int[]{3, 1, 2, 5, 2}));
+        assertArrayEquals(new int[]{3, 5}, Problems.problem5(new int[]{3, 1, 2, 3, 6, 4}));
+    }
+
+    @Test
+    public void problem6(){
+        assertEquals(3, Problems.problem6(new int[]{-3, 1 ,5, 4, 2}));
+        assertEquals(4, Problems.problem6(new int[]{3, -2, 0, 1, 2}));
+        assertEquals(4, Problems.problem6(new int[]{3, 2, 5, 1}));
+    }
 }

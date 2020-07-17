@@ -88,18 +88,48 @@ public class Problems {
     }
 
     /**
-     * Given an array of size n and values ranging from 1...n, find all duplicates
+     * You are given an array with values from 1...n with n being the size of the array
+     * One value has been duplicated exactly once, while another is missing
+     * Find both of these values
      */
-    public static List<Integer> problem5(int[] arr){
+    public static int[] problem5(int[] arr){
         if(arr == null || arr.length == 0)
-            return new ArrayList<>();
-        List<Integer> output = new ArrayList<>();
+            return new int[]{-1 , -1};
         int i = 0;
+        int[] output = new int[]{-1, -1};
         while(i < arr.length){
             if(arr[i] - 1 == i)
                 i++;
-            
+            else if(arr[arr[i] - 1] == arr[i]){
+                output[0] = arr[i];
+                output[1] = i + 1;
+                i++;
+            }
+            else
+                swap(arr, arr[i] - 1, i);
         }
+        return output;
+    }
+
+    /**
+     * Given a unsorted array of UNIQUE numbers, find the first missing smallest integer
+     */
+    public static int problem6(int[] arr){
+        if(arr == null || arr.length == 0)
+            return -1;
+
+        int i = 0;
+        while(i < arr.length){
+            if(arr[i] - 1 == i || arr[i] > arr.length || arr[i] <= 0)
+                i++;
+            else
+                swap(arr, arr[i] - 1, i);
+        }
+        for(int j = 0; j < arr.length; j++){
+            if(arr[j] - 1 != j)
+                return j + 1;
+        }
+        return arr.length + 1;
     }
 
     private static void swap(int[] a, int i , int j){
