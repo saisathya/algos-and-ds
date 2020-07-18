@@ -46,4 +46,11 @@ public class ProblemsTest {
         assertEquals(4, Problems.problem6(new int[]{3, -2, 0, 1, 2}));
         assertEquals(4, Problems.problem6(new int[]{3, 2, 5, 1}));
     }
+
+    @Test
+    public void problem7(){
+        assertThat(Problems.problem7(new int[]{3, -1, 4, 5, 5}, 3), hasItems(1, 2, 6));
+        assertThat(Problems.problem7(new int[]{2, 3, 4}, 3), hasItems(1, 5, 6));
+        assertThat(Problems.problem7(new int[]{-2, -3, 4}, 2), hasItems(1, 2));
+    }
 }

@@ -132,9 +132,45 @@ public class Problems {
         return arr.length + 1;
     }
 
+    /**
+     * Given an array of integers, find the first k missing integers
+     */
+    public static List<Integer> problem7(int[] arr, int k){
+        if(arr == null || arr.length == 0 || k <= 0)
+            return new ArrayList<>();
+        int i = 0;
+        HashSet<Integer> greaterNumbers = new HashSet<>();
+        List<Integer> output = new ArrayList<>();
+        while(i < arr.length){
+            if(arr[i] > arr.length){
+                greaterNumbers.add(arr[i]);
+                i++;
+            }
+            else if(arr[i] - 1 == i || arr[i] <= 0 || arr[arr[i] - 1] == arr[i])
+                i++;
+            else
+                swap(arr, arr[i] - 1, i);
+
+        }
+        i = 0;
+        while(i < arr.length && output.size() <= k){
+            if(arr[i] - 1 != i)
+                output.add(i + 1);
+            i++;
+        }
+        i = arr.length;
+        while(output.size() <= k){
+            if(!greaterNumbers.contains(i))
+                output.add(i);
+            i++;
+        }
+        return output;
+    }
     private static void swap(int[] a, int i , int j){
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
     }
+
+
 }
