@@ -11,7 +11,7 @@ public class ProblemsTest {
         ListNode head = new ListNode(-1);
         ListNode curr = head;
 
-        for(int i = 0; i < val; i++){
+        for(int i = 1; i <= val; i++){
             curr.next = new ListNode(i);
             curr = curr.next;
         }
@@ -32,9 +32,15 @@ public class ProblemsTest {
 
     @Test
     public void problem1(){
-        assertEquals(shortListString.reverse().toString(), Problems.problem1(shortList).toString());
-        assertEquals(longListString.reverse().toString(), Problems.problem1(longList).toString());
-        assertEquals(evenListString.reverse().toString(), Problems.problem1(evenList).toString());
-        assertEquals(oddListString.reverse().toString(), Problems.problem1(oddList).toString());
+        assertEquals("5 4 3 2 1", Problems.problem1(shortList).toString());
+        assertEquals("10 9 8 7 6 5 4 3 2 1", Problems.problem1(longList).toString());
+        assertEquals("8 7 6 5 4 3 2 1", Problems.problem1(evenList).toString());
+        assertEquals("9 8 7 6 5 4 3 2 1", Problems.problem1(oddList).toString());
+    }
+
+    @Test
+    public void problem2(){
+        assertEquals("1 4 3 2 5", Problems.problem2(shortList, 2, 4).toString());
+        assertEquals("8 7 6 5 4 3 2 1", Problems.problem2(evenList, 1, 8).toString());
     }
 }
