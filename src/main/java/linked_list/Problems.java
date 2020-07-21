@@ -38,12 +38,12 @@ public class Problems {
             i++;
         }
 
-        curr.next = reverse(curr.next, start, end);
+        curr.next = problem2_helper(curr.next, start, end);
 
         return newHead.next;
     }
 
-    public static ListNode reverse(ListNode head, int start, int end){
+    public static ListNode problem2_helper(ListNode head, int start, int end){
         int i = start;
         ListNode prev = new ListNode(-1);
         ListNode curr = head;
@@ -62,5 +62,38 @@ public class Problems {
         node.next = curr;
 
         return prev.next;
+    }
+
+    /**
+     * Given the head of a linkedList and and integer k, reverse every k nodes
+     */
+    public static ListNode problem3(ListNode head, int k){
+        // Two ways to solve this problem. First way is using problem2_helper, whereby we call it N/k times to revert
+        // the intervals. Since there are N/k calls, and problem2_helper takes O(N) time. This procedure will take approx.
+        // O(N^2/k) time.
+        // We can solve this problem linearly by reversing k nodes incrementaly
+        if(head == null || k <= 0)
+            return head;
+
+        ListNode reversed = new ListNode(-1);
+        ListNode prev = reversed;
+        ListNode curr = head;
+        while(curr != null){
+            int i = 0;
+            ListNode lastNode = curr;
+            while(i < k && curr != null){
+                ListNode temp = prev.next;
+                prev.next = curr;
+                curr = curr.next;
+                prev.next.next = temp;
+                i++;
+            }
+
+            while(prev.next != null){
+                prev = prev.next;
+            }
+        }
+
+        return reversed.next;
     }
 }

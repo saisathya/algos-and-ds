@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 
 public class ProblemsTest {
     static ListNode longList, shortList, evenList, oddList;
-    static StringBuilder longListString, shortListString, evenListString, oddListString;
     public static ListNode createList(int val){
         ListNode head = new ListNode(-1);
         ListNode curr = head;
@@ -21,13 +20,9 @@ public class ProblemsTest {
     @BeforeClass
     public static void setup(){
         shortList = createList(5);
-        shortListString = new StringBuilder(shortList.toString());
         longList = createList(10);
-        longListString = new StringBuilder(longList.toString());
         evenList = createList(8);
-        evenListString = new StringBuilder(evenList.toString());
         oddList = createList(9);
-        oddListString = new StringBuilder(oddList.toString());
     }
 
     @Test
@@ -42,5 +37,12 @@ public class ProblemsTest {
     public void problem2(){
         assertEquals("1 4 3 2 5", Problems.problem2(shortList, 2, 4).toString());
         assertEquals("8 7 6 5 4 3 2 1", Problems.problem2(evenList, 1, 8).toString());
+    }
+
+    @Test
+    public void problem3(){
+        assertEquals("2 1 4 3 6 5 8 7 10 9", Problems.problem3(longList, 2).toString());
+        assertEquals("8 7 6 5 4 3 2 1", Problems.problem3(evenList, 11).toString());
+        assertEquals("4 3 2 1 8 7 6 5 9", Problems.problem3(oddList, 4).toString());
     }
 }
