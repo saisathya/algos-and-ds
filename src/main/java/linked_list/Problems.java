@@ -80,6 +80,8 @@ public class Problems {
         ListNode curr = head;
         while(curr != null){
             int i = 0;
+            // the last node in the previous subList was the first Node
+            // Therefore, we just have to save the first node, to that we can get our new previous
             ListNode lastNode = curr;
             while(i < k && curr != null){
                 ListNode temp = prev.next;
@@ -89,9 +91,10 @@ public class Problems {
                 i++;
             }
 
-            while(prev.next != null){
-                prev = prev.next;
-            }
+//            while(prev.next != null){
+//                prev = prev.next;
+//            }
+            prev = lastNode;
         }
 
         return reversed.next;
