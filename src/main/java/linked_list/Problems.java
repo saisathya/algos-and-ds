@@ -99,4 +99,37 @@ public class Problems {
 
         return reversed.next;
     }
+
+    /**
+     * Reverse every alternating k intervals
+     */
+    public static ListNode problem4(ListNode head, int k){
+        if(head == null || k <= 0)
+            return head;
+
+        ListNode reversed = new ListNode(-1);
+        ListNode prev = reversed;
+        ListNode curr = head;
+
+        while(curr != null){
+            ListNode lastNode = curr;
+            // reverse interval
+            for(int i = 0; i < k && curr != null; i++){
+                ListNode temp = prev.next;
+                prev.next = curr;
+                curr = curr.next;
+                prev.next.next = temp;
+            }
+            prev = lastNode;
+            // append interval
+            for(int i = 0; i < k && curr != null; i++){
+                prev.next = curr;
+                prev = prev.next;
+                curr = curr.next;
+            }
+            prev.next = null;
+        }
+
+        return reversed.next;
+    }
 }

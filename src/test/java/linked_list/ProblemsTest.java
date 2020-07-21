@@ -45,4 +45,11 @@ public class ProblemsTest {
         assertEquals("8 7 6 5 4 3 2 1", Problems.problem3(evenList, 11).toString());
         assertEquals("4 3 2 1 8 7 6 5 9", Problems.problem3(oddList, 4).toString());
     }
+
+    @Test
+    public void problem4(){
+        assertEquals("2 1 3 4 6 5 7 8 10 9", Problems.problem4(longList, 2).toString());
+        assertEquals("2 1 3 4 6 5 7 8", Problems.problem4(evenList, 2).toString());
+        assertEquals("4 3 2 1 5 6 7 8 9", Problems.problem4(oddList, 4).toString());
+    }
 }
