@@ -29,4 +29,29 @@ public class ProblemsTest {
 
         assertThat(Problems.problem2(root), hasItems(Arrays.asList(9, 10, 5), Arrays.asList(7, 1), Arrays.asList(12)));
     }
+
+    @Test
+    public void problem3(){
+        TreeNode root = new TreeNode(12);
+        root.left = new TreeNode(7);
+        root.right = new TreeNode(1);
+        root.left.left = new TreeNode(9);
+        root.right.left = new TreeNode(10);
+        root.right.right = new TreeNode(5);
+        root.right.left.left = new TreeNode(20);
+        root.right.left.right = new TreeNode(17);
+        assertThat(Problems.problem3(root), hasItems(Arrays.asList(12), Arrays.asList(1, 7), Arrays.asList(9, 10, 5), Arrays.asList(17, 20)));
+    }
+
+    @Test
+    public void problem4(){
+        TreeNode root = new TreeNode(12);
+        root.left = new TreeNode(7);
+        root.right = new TreeNode(1);
+        root.left.left = new TreeNode(9);
+        root.left.right = new TreeNode(2);
+        root.right.left = new TreeNode(10);
+        root.right.right = new TreeNode(5);
+        assertThat(Problems.problem4(root), hasItems(12.0, 4.0, 6.5));
+    }
 }

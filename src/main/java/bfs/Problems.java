@@ -58,4 +58,70 @@ public class Problems {
         }
         return output;
     }
+
+    /**
+     * Zig zag level traversal of binary tree
+     */
+    public static List<List<Integer>> problem3(TreeNode root){
+        if(root == null)
+            return new ArrayList<>();
+        List<List<Integer>> output = new ArrayList<>();
+        List<TreeNode> list = new LinkedList<>();
+        list.add(root);
+        boolean isLtr = true;
+        while(!list.isEmpty()){
+            List<Integer> row = new ArrayList<>();
+            int count = list.size();
+            if(isLtr){
+                for(int i = 0; i < count; i++){
+                    TreeNode node = list.remove(0);
+                    row.add(node.val);
+                    if(node.left != null)
+                        list.add(node.left);
+                    if(node.right != null)
+                        list.add(node.right);
+                }
+            }
+            else{
+                for(int i = 0; i < count; i++){
+                    TreeNode node = list.remove(list.size() - 1);
+                    row.add(node.val);
+                    if(node.right != null)
+                        list.add(0, node.right);
+                    if(node.left != null)
+                        list.add(0, node.left);
+                }
+            }
+            output.add(row);
+            isLtr = !isLtr;
+        }
+
+        return output;
+    }
+
+    /**
+     * Given a binary tree, get the average of each level
+     */
+    public static List<Double> problem4(TreeNode root){
+        if(root == null)
+            return new ArrayList<>();
+
+        List<Double> result = new ArrayList<>();
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.add(root);
+
+        while(!q.isEmpty()){
+            int count = q.size();
+            double sum = 0;
+            for(int i = 0; i < count; i++){
+                TreeNode node = q.poll();
+                sum += node.val;
+                if(node.left != null) q.offer(node.left);
+                if(node.right != null) q.offer(node.right);
+            }
+            result.add(sum / count);
+        }
+
+        return result;
+    }
 }
