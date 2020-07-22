@@ -124,4 +124,29 @@ public class Problems {
 
         return result;
     }
+
+    /**
+     * Find the minimum depth (shortest path from root to a leave) in a binary tree
+     */
+    public static int problem5(TreeNode root){
+        if(root == null)
+            return 0;
+        int depth = 0;
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            depth++;
+            int count = q.size();
+            for(int i = 0; i < count; i++){
+                TreeNode node = q.poll();
+                if(node.left == null && node.right == null)
+                    return depth;
+                if(node.left != null)
+                    q.offer(node.left);
+                if(node.right != null)
+                    q.offer(node.right);
+            }
+        }
+        return 0;
+    }
 }
