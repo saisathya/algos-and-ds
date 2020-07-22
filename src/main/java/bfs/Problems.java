@@ -149,4 +149,30 @@ public class Problems {
         }
         return 0;
     }
+
+    /**
+     * Given a binary tree, print it's right view
+     */
+    public static List<Integer> problem6(TreeNode root){
+        if(root == null)
+            return new ArrayList<>();
+        List<Integer> output = new ArrayList<>();
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+
+        while(!q.isEmpty()){
+            int count = q.size();
+            for(int i = 0; i < count; i++){
+                if(i == 0)
+                    output.add(q.peek().val);
+                TreeNode node = q.poll();
+                if(node.right != null)
+                    q.offer(node.right);
+                if(node.left != null)
+                    q.offer(node.left);
+            }
+        }
+
+        return output;
+    }
 }

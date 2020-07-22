@@ -66,4 +66,17 @@ public class ProblemsTest {
         root.right.left.left = new TreeNode(11);
         assertEquals(3, Problems.problem5(root));
     }
+
+    @Test
+    public void problem6(){
+        TreeNode root = new TreeNode(12);
+        root.left = new TreeNode(7);
+        root.right = new TreeNode(1);
+        root.left.left = new TreeNode(9);
+        root.right.left = new TreeNode(10);
+        root.right.right = new TreeNode(5);
+        root.left.left.left = new TreeNode(3);
+        List<Integer> result = Problems.problem6(root);
+        assertThat(result, hasItems(12, 1, 5, 3));
+    }
 }
