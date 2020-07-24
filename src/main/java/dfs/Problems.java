@@ -44,18 +44,18 @@ public class Problems {
      * Find the sum of all these numbers
      */
     public static int problem3(TreeNode root){
+        if(root == null)
+            return -1;
         return problem3_helper(root, 0);
     }
 
-    public static int problem3_helper(TreeNode root, int sum){
-        if(root == null || (root.left == null && root.right == null))
-            return sum;
-        sum = sum * 10 + root.val;
-        int left = sum, right = sum;
-        if(root.left != null)
-            left = problem3_helper(root.left, sum);
-        if(root.right != null)
-            right = problem3_helper(root.right, sum);
-        return left + right;
+    public static int problem3_helper(TreeNode root, int acc){
+        if(root == null)
+            return 0;
+        acc = acc * 10 + root.val;
+        if(root.left == null && root.right == null)
+            return acc;
+        return problem3_helper(root.left, acc) + problem3_helper(root.right, acc);
+
     }
 }
