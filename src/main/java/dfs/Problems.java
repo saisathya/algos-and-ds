@@ -38,4 +38,24 @@ public class Problems {
         problem2_helper(root.left, sum - root.val, newAcc, output);
         problem2_helper(root.right, sum - root.val, newAcc, output);
     }
+
+    /**
+     * Given a binary tree, each node represents a value between 0 to 9. Each path from root to leave represents a number.
+     * Find the sum of all these numbers
+     */
+    public static int problem3(TreeNode root){
+        return problem3_helper(root, 0);
+    }
+
+    public static int problem3_helper(TreeNode root, int sum){
+        if(root == null || (root.left == null && root.right == null))
+            return sum;
+        sum = sum * 10 + root.val;
+        int left = sum, right = sum;
+        if(root.left != null)
+            left = problem3_helper(root.left, sum);
+        if(root.right != null)
+            right = problem3_helper(root.right, sum);
+        return left + right;
+    }
 }
