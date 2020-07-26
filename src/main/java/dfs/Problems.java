@@ -56,6 +56,31 @@ public class Problems {
         if(root.left == null && root.right == null)
             return acc;
         return problem3_helper(root.left, acc) + problem3_helper(root.right, acc);
+    }
+
+    /**
+     * Given a path from root to leaf, determine if the binary tree has such a path
+     */
+    public static boolean problem4(TreeNode root, int[] seq){
+        if(root == null){
+            if(seq == null || seq.length == 0)
+                return true;
+            return false;
+        }
+        if(seq == null)
+            return false;
+        return problem4_helper(root, seq, 0);
+    }
+
+    public static boolean problem4_helper(TreeNode root, int[] seq, int index){
+        if(root == null || index >= seq.length || root.val != seq[index])
+            return false;
+        else if(index == seq.length - 1){
+            if(root.left == null && root.right == null)
+                return true;
+            else return false;
+        }
+        else return problem4_helper(root.left, seq, index + 1) || problem4_helper(root.right, seq, index + 1);
 
     }
 }

@@ -39,4 +39,19 @@ public class ProblemsTest {
         root.right.right = new TreeNode(5);
         assertEquals(332, Problems.problem3(root));
     }
+
+    @Test
+    public void problem4(){
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(0);
+        root.right = new TreeNode(1);
+        root.left.left = new TreeNode(1);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(5);
+        assertFalse(Problems.problem4(root, new int[] { 1, 0, 7 }));
+        assertTrue(Problems.problem4(root, new int[] { 1, 1, 6 }));
+        assertFalse(Problems.problem4(root, new int[]{1, 1}));
+        assertTrue(Problems.problem4(null, new int[]{}));
+        assertTrue(Problems.problem4(null, null));
+    }
 }
