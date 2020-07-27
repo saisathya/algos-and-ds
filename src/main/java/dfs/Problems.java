@@ -103,4 +103,17 @@ public class Problems {
         int right = problem5_helper(root.right, k, new HashMap<>(newMap));
         return left + right - newMap.getOrDefault(k, 0);
     }
+
+    /**
+     * Find the diameter of a binary tree.
+     * The diameter is the longest path between any two leaves that does not
+     * necessarily pass through the middle.
+     */
+    public static int problem6(TreeNode root){
+        return problem6_helper(root, 0, new int[]{Integer.MIN_VALUE, Integer.MIN_VALUE});
+    }
+
+    private static int problem6_helper(TreeNode root, int i, int[] ints) {
+        return 0;
+    }
 }
