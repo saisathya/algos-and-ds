@@ -54,4 +54,22 @@ public class ProblemsTest {
         assertTrue(Problems.problem4(null, new int[]{}));
         assertTrue(Problems.problem4(null, null));
     }
+
+    @Test
+    public void problem5(){
+        TreeNode root = new TreeNode(12);
+        root.left = new TreeNode(7);
+        root.right = new TreeNode(1);
+        root.left.left = new TreeNode(4);
+        root.right.left = new TreeNode(10);
+        root.right.right = new TreeNode(5);
+        TreeNode root2 = new TreeNode(1);
+        root2.left = new TreeNode(2); root2.right = new TreeNode(3);
+        root2.left.left = new TreeNode(4); root2.left.right = new TreeNode(5);
+        root2.right.left = new TreeNode(6); root2.right.right = new TreeNode(7);
+        root2.left.left.left = new TreeNode(8); root2.left.left.right = new TreeNode(9);
+        root2.left.right.left = new TreeNode(10);
+        assertEquals(2, Problems.problem5(root, 11));
+        assertEquals(3, Problems.problem5(root2, 15));
+    }
 }

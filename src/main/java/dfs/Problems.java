@@ -81,6 +81,26 @@ public class Problems {
             else return false;
         }
         else return problem4_helper(root.left, seq, index + 1) || problem4_helper(root.right, seq, index + 1);
+    }
 
+    /**
+     * Given a value k, find the number of paths that add up to k.
+     * If it is a balanced binary tree runtime is O(n lgn) because at each level we will need to recalculate lg(n - 1) items
+     */
+    public static int problem5(TreeNode root, int k){
+        return problem5_helper(root, k, new HashMap<>());
+    }
+
+    public static int problem5_helper(TreeNode root, int k, Map<Integer, Integer> map){
+        if(root == null)
+            return map.getOrDefault(k,0);
+        Map<Integer, Integer> newMap = new HashMap<>();
+        for(int i : map.keySet()){
+            newMap.put(i + root.val, map.getOrDefault(i, 1));
+        }
+        newMap.put(root.val, map.getOrDefault(root.val, 1));
+        int left = problem5_helper(root.left, k, new HashMap<>(newMap));
+        int right = problem5_helper(root.right, k, new HashMap<>(newMap));
+        return left + right - newMap.getOrDefault(k, 0);
     }
 }
