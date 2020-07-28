@@ -110,10 +110,15 @@ public class Problems {
      * necessarily pass through the middle.
      */
     public static int problem6(TreeNode root){
-        return problem6_helper(root, 0, new int[]{Integer.MIN_VALUE, Integer.MIN_VALUE});
+        int depth = problem6_helper(root, 0);
+        return depth;
     }
 
-    private static int problem6_helper(TreeNode root, int i, int[] ints) {
-        return 0;
+    private static int problem6_helper(TreeNode root, int depth) {
+        if(root == null)
+            return depth;
+        int left = problem6_helper(root.left, depth + 1);
+        int right = problem6_helper(root.right, depth + 1);
+        return Math.max(left, right);
     }
 }
