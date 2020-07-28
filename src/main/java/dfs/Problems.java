@@ -109,13 +109,13 @@ public class Problems {
      * The diameter is the longest path between any two leaves that does not
      * necessarily pass through the middle.
      */
-    static int problem6_sol = Integer.MIN_VALUE;
+    static int problem6_sol = Integer.MIN_VALUE; // This shouldn't be static
     public static int problem6(TreeNode root){
         problem6_helper(root, 0);
         return problem6_sol;
     }
 
-    private static int problem6_helper(TreeNode root, int depth) {
+    public static int problem6_helper(TreeNode root, int depth) {
         if(root == null)
             return depth - 1;
         int left = problem6_helper(root.left, depth + 1);
@@ -123,5 +123,27 @@ public class Problems {
         int diameter = left + right - 2 * depth + 1;
         problem6_sol = Math.max(diameter, problem6_sol);
         return Math.max(left, right);
+    }
+
+    /**
+     * Given a binary tree, find the path with the maximum sum
+     */
+    static int problem7_sol = Integer.MIN_VALUE; // This shouldn't be static
+    public static int problem7(TreeNode root){
+        problem7_sol = Integer.MIN_VALUE;
+        problem7_helper(root);
+        return problem7_sol;
+    }
+
+    public static int problem7_helper(TreeNode root){
+        if(root == null)
+            return 0;
+        int left = problem7_helper(root.left);
+        int right = problem7_helper(root.right);
+        problem7_sol = Math.max(left + root.val, problem7_sol);
+        problem7_sol = Math.max(right + root.val, problem7_sol);
+        problem7_sol = Math.max(right + left + root.val, problem7_sol);
+        problem7_sol = Math.max(root.val, problem7_sol);
+        return Math.max(left, right) + root.val;
     }
 }

@@ -90,4 +90,24 @@ public class ProblemsTest {
         root.right.right.left.left = new TreeNode(11);
         assertEquals(7, Problems.problem6(root));
     }
+
+    @Test
+    public void problem7(){
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        assertEquals(6, Problems.problem7(root));
+        root.left.left = new TreeNode(1);
+        root.left.right = new TreeNode(3);
+        root.right.left = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+        root.right.left.left = new TreeNode(7);
+        root.right.left.right = new TreeNode(8);
+        root.right.right.left = new TreeNode(9);
+        assertEquals(31, Problems.problem7(root));
+
+        root = new TreeNode(-1);
+        root.left = new TreeNode(-3);
+        assertEquals(-1, Problems.problem7(root));
+    }
 }
