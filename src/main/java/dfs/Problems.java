@@ -109,16 +109,19 @@ public class Problems {
      * The diameter is the longest path between any two leaves that does not
      * necessarily pass through the middle.
      */
+    static int problem6_sol = Integer.MIN_VALUE;
     public static int problem6(TreeNode root){
-        int depth = problem6_helper(root, 0);
-        return depth;
+        problem6_helper(root, 0);
+        return problem6_sol;
     }
 
     private static int problem6_helper(TreeNode root, int depth) {
         if(root == null)
-            return depth;
+            return depth - 1;
         int left = problem6_helper(root.left, depth + 1);
         int right = problem6_helper(root.right, depth + 1);
+        int diameter = left + right - 2 * depth + 1;
+        problem6_sol = Math.max(diameter, problem6_sol);
         return Math.max(left, right);
     }
 }
