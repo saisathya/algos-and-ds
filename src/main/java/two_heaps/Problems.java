@@ -7,22 +7,29 @@ public class Problems {
      * Design a class that helps find the median of an input stream
      */
     public static class Problem1{
-        PriorityQueue<Integer> left = new PriorityQueue<>();
-        PriorityQueue<Integer> right = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
+        PriorityQueue<Integer> left = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
+        PriorityQueue<Integer> right = new PriorityQueue<>();
 
         public void insert(int num){
-            if(left.isEmpty() && right.isEmpty())
-                right.offer(num);
-            else if(num >= right.peek() || left.size() == right.size()){
-                right.offer(num);
-                left.offer(right.poll());
+            if(left.size() == right.size()){
+                if(!left.isEmpty() && num <= left.peek()){
+                    left.offer(num);
+                    right.offer(left.poll());
+                }
+                else right.offer(num);
             }
-            else
-                left.offer(num);
+            else{
+                if(!left.isEmpty() && num <= left.peek())
+                    left.offer(num);
+                else{
+                    right.offer(num);
+                    left.offer(right.poll());
+                }
+            }
         }
 
         public double findMedian(){
-            if(!left.isEmpty() && left.size() == right.size())
+            if(left.size() == right.size())
                 return (left.peek() + right.peek()) * 1.0 / 2;
             return right.peek();
         }
