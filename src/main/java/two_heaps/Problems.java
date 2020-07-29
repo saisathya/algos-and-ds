@@ -7,31 +7,87 @@ public class Problems {
      * Design a class that helps find the median of an input stream
      */
     public static class Problem1{
-        PriorityQueue<Integer> left = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
-        PriorityQueue<Integer> right = new PriorityQueue<>();
+        PriorityQueue<Integer> left = new PriorityQueue<>((a, b) -> Integer.compare(b, a)); // max heap
+        PriorityQueue<Integer> right = new PriorityQueue<>(); // min heap
 
         public void insert(int num){
-            if(left.size() == right.size()){
-                if(!left.isEmpty() && num <= left.peek()){
-                    left.offer(num);
-                    right.offer(left.poll());
-                }
-                else right.offer(num);
-            }
-            else{
-                if(!left.isEmpty() && num <= left.peek())
-                    left.offer(num);
-                else{
-                    right.offer(num);
-                    left.offer(right.poll());
-                }
-            }
+            if(right.isEmpty() || num >= right.peek())
+                right.offer(num);
+            else left.offer(num);
+
+            if(right.size() - left.size() > 1)
+                left.offer(right.poll());
+            else if(left.size() > right.size())
+                right.offer(left.poll());
         }
 
         public double findMedian(){
             if(left.size() == right.size())
                 return (left.peek() + right.peek()) * 1.0 / 2;
             return right.peek();
+        }
+    }
+
+    /**
+     * Given an unsorted array and an integer k, find the median of all sublists size k
+     */
+    public static class Problem2{
+        PriorityQueue<Integer> leftHalf, rightHalf;
+
+        public List<Double> problem2(int[] arr, int k){
+            leftHalf = new PriorityQueue<>((a, b) -> Integer.compare(b, a));
+            rightHalf = new PriorityQueue<>();
+            if(arr == null || k <= 0)
+                return new ArrayList<>();
+
+            List<Double> output = new ArrayList<Double>();
+            int left = 0, right = 0;
+            for(; right < arr.length; right++){
+                insert(arr[right]);
+                if(right >= k - 1){
+                    output.add(getMedian());
+                    remove(arr[left]);
+                    left++;
+                }
+            }
+            return output;
+        }
+
+        private void insert(int num){
+            if(rightHalf.isEmpty() || num >= rightHalf.peek())
+                rightHalf.offer(num);
+            else leftHalf.offer(num);
+
+            if(rightHalf.size() - leftHalf.size() > 1)
+                leftHalf.offer(rightHalf.poll());
+            else if(leftHalf.size() > rightHalf.size())
+                rightHalf.offer(leftHalf.poll());
+        }
+
+        private void remove(int num){
+            if(leftHalf.size() == rightHalf.size()){
+                if(num <= leftHalf.peek())
+                    leftHalf.remove(num);
+                else{
+                    rightHalf.remove(num);
+                    rightHalf.offer(leftHalf.poll());
+                }
+            }
+            else{
+                if(num <= leftHalf.peek()){
+                    leftHalf.remove(num);
+                    leftHalf.offer(rightHalf.poll());
+                }
+                else{
+                    rightHalf.remove(num);
+                }
+            }
+        }
+
+        private double getMedian(){
+            if(leftHalf.size() == rightHalf.size())
+                return leftHalf.peek() / 2.0 + rightHalf.peek() / 2.0;
+            return rightHalf.peek();
         }
     }
 }
