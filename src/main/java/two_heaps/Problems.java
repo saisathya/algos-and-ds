@@ -90,4 +90,31 @@ public class Problems {
             return rightHalf.peek();
         }
     }
+
+    public static int problem3(int[] costs, int[] profits, int amount, int projects){
+        if(costs == null || profits == null || amount < 0 || projects < 0 || projects > costs.length || profits.length != costs.length){
+            return 0;
+        }
+
+        PriorityQueue<Integer> left = new PriorityQueue<>((a, b) -> Integer.compare(profits[b], profits[a]));
+        PriorityQueue<Integer> right = new PriorityQueue<>();
+
+        for(int i = 0; i < costs.length; i++){
+            if(costs[i] > amount)
+                right.offer(costs[i]);
+            else
+                left.offer(costs[i]);
+        }
+
+        int i = 0;
+        while(i < projects && !left.isEmpty()){
+            amount += profits[left.poll()];
+            while(!right.isEmpty() && right.peek() <= amount){
+                left.offer(right.poll());
+            }
+            i++;
+        }
+
+        return amount;
+    }
 }

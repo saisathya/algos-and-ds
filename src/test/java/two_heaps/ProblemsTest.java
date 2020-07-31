@@ -25,4 +25,10 @@ public class ProblemsTest {
         assertThat(p2.problem2(new int[] { 1, 2, -1, 3, 5 }, 2), hasItems(1.5, 0.5, 1.0, 4.0));
         assertThat(p2.problem2(new int[] { 1, 2, -1, 3, 5 }, 3), hasItems(1.0, 2.0, 3.0));
     }
+
+    @Test
+    public void problem3(){
+        assertEquals(6, Problems.problem3(new int[] { 0, 1, 2 }, new int[] { 1, 2, 3 }, 1, 2));
+        assertEquals(8, Problems.problem3(new int[] { 0, 1, 2, 3 }, new int[] { 1, 2, 3, 5 }, 0, 3));
+    }
 }
