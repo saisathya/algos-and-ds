@@ -31,4 +31,9 @@ public class ProblemsTest {
         assertEquals(6, Problems.problem3(new int[] { 0, 1, 2 }, new int[] { 1, 2, 3 }, 1, 2));
         assertEquals(8, Problems.problem3(new int[] { 0, 1, 2, 3 }, new int[] { 1, 2, 3, 5 }, 0, 3));
     }
+
+    @Test
+    public void problem4(){
+        assertArrayEquals(new int[]{2, -1, -1}, Problems.problem4(new Interval[] { new Interval(3, 4), new Interval(1, 5), new Interval(4, 6) }));
+    }
 }

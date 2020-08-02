@@ -123,9 +123,26 @@ public class Problems {
             return new int[0];
         int[] output = new int[intervals.length];
 
-        PriorityQueue<Interval> start = new PriorityQueue<>((a, b) -> Integer.compare(b.start, a.start));
-        PriorityQueue<Interval> end = new PriorityQueue<>((a, b) -> Integer.compare(b.end, a.start));
+        PriorityQueue<Integer> start = new PriorityQueue<>((a, b) -> Integer.compare(intervals[b].start, intervals[a].start));
+        PriorityQueue<Integer> end = new PriorityQueue<>((a, b) -> Integer.compare(intervals[b].end, intervals[a].end));
+        for(int i = 0; i < intervals.length; i++){
+            start.offer(i);
+            end.offer(i);
+        }
 
+        for(int i = 0; i < intervals.length; i++){
+            int last = end.poll();
+            output[last] = -1;
+
+            if(intervals[start.peek()].start >= intervals[last].end){
+                int first = start.poll();
+                while(!start.isEmpty() && intervals[start.peek()].start >= intervals[last].end){
+                    first = start.poll();
+                }
+                output[last] = first;
+                start.offer(first);
+            }
+        }
 
         return output;
     }
