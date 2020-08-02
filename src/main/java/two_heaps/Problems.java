@@ -117,4 +117,16 @@ public class Problems {
 
         return amount;
     }
+
+    public static int[] problem4(Interval[] intervals){
+        if(intervals == null || intervals.length == 0)
+            return new int[0];
+        int[] output = new int[intervals.length];
+
+        PriorityQueue<Interval> start = new PriorityQueue<>((a, b) -> Integer.compare(b.start, a.start));
+        PriorityQueue<Interval> end = new PriorityQueue<>((a, b) -> Integer.compare(b.end, a.start));
+
+
+        return output;
+    }
 }
