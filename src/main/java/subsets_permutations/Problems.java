@@ -1,4 +1,4 @@
-package subsets;
+package subsets_permutations;
 import java.util.*;
 
 public class Problems {
@@ -42,7 +42,6 @@ public class Problems {
             }
             output.addAll(temp);
         }
-
 
         return new ArrayList<>(output);
     }
