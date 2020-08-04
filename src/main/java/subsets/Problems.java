@@ -29,5 +29,21 @@ public class Problems {
      */
     public static List<List<Integer>> problem2(int[] arr){
         if(arr == null)
+            return new ArrayList<>();
+        Set<List<Integer>> output = new HashSet<>();
+        output.add(new ArrayList<>());
+
+        for(int num : arr){
+            Set<List<Integer>> temp = new HashSet<>();
+            for(List<Integer> list : output){
+                List<Integer> l = new ArrayList<>(list);
+                l.add(num);
+                temp.add(l);
+            }
+            output.addAll(temp);
+        }
+
+
+        return new ArrayList<>(output);
     }
 }
