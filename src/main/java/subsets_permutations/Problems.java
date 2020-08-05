@@ -45,4 +45,53 @@ public class Problems {
 
         return new ArrayList<>(output);
     }
+
+    /**
+     * Given a list of unique numbers, find all permutations
+     */
+    public static List<List<Integer>> problem3(int[] arr){
+        if(arr == null)
+            return new ArrayList<>();
+        List<List<Integer>> output = new ArrayList<>();
+        problem3_helper(arr, new HashSet<>(), new ArrayList<>(), output);
+        return output;
+    }
+
+    private static void problem3_helper(int[] arr, Set<Integer> used, List<Integer> curr ,List<List<Integer>> output){
+        if(curr.size() == arr.length){
+            output.add(curr);
+            return;
+        }
+        for(int i = 0; i < arr.length; i++){
+            if(!used.contains(i)){
+                used.add(i);
+                List<Integer> list = new ArrayList<>(curr);
+                list.add(arr[i]);
+                problem3_helper(arr, used, list, output);
+                used.remove(i);
+            }
+        }
+    }
+
+    /**
+     * Given a word, return all permutations
+     */
+    public static List<String> problem4(String s){
+        if(s == null || s.length() == 0)
+            return new ArrayList<>();
+
+        List<String> output = new ArrayList<>();
+        output.add(s);
+        String temp;
+        while(!(temp = getNextPerm(output.get(output.size() - 1))).equals(s)){
+            output.add(temp);
+        }
+        return output;
+    }
+
+    private static String getNextPerm(String s){
+        if(s.length() <= 1)
+            return s;
+        StringBuilder sb = new StringBuilder(s);
+    }
 }
