@@ -26,4 +26,9 @@ public class ProblemsTest {
                 asList(3, 1, 2), asList(3, 2, 1)));
         assertThat(problem3(new int[]{1}), containsInAnyOrder(asList(1)));
     }
+
+    @Test
+    public void testProblem4(){
+        assertThat(problem4("c3po"), containsInAnyOrder("c3po", "C3po", "C3Po", "C3PO", "c3Po", "c3PO", "c3pO"));
+    }
 }
