@@ -80,33 +80,22 @@ public class Problems {
         if(s == null || s.length() == 0)
             return new ArrayList<>();
 
-        List<String> output = new ArrayList<>();
+        Set<String> output = new HashSet<>();
         output.add(s);
-
-        int letters = 0;
-        for(char c : s.toCharArray())
-            if(Character.isLetter(c)) letters++;
-
-        problem4_helper(new StringBuilder(s), output, new HashSet<>(), new StringBuilder());
-        System.out.println(output);
-        return output;
+        problem4_helper(new StringBuilder(s), output, new HashSet<>());
+        return new ArrayList<>(output);
     }
 
-    public static void problem4_helper(StringBuilder s, List<String> output, Set<Integer> used, StringBuilder curr){
-        if(s.length() == curr.length()){
-            output.add(curr.toString());
-            return;
-        }
-        for(int i = 0; i < s.length(); i++){
+    public static void problem4_helper(StringBuilder s, Set<String> output, Set<Integer> used){
+        output.add(s.toString());
+        for(int i  = 0; i < s.length(); i++){
             if(!used.contains(i)){
-                char c = s.charAt(i);
-                StringBuilder sb = new StringBuilder(curr);
-                if(Character.isLetter(c))
-                    sb.append(Character.toUpperCase(c));
-                else
-                    sb.append(c);
                 used.add(i);
-                problem4_helper(s, output, used, sb);
+                StringBuilder sb = new StringBuilder(s);
+                char c = sb.charAt(i);
+                if(Character.isLetter(c))
+                    sb.setCharAt(i, Character.toUpperCase(c));
+                problem4_helper(sb, output, used);
                 used.remove(i);
             }
         }
