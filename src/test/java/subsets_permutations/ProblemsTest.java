@@ -37,4 +37,13 @@ public class ProblemsTest {
         assertThat(alternate_problem4("ad52"), containsInAnyOrder("ad52", "Ad52", "aD52", "AD52" ));
         assertThat(alternate_problem4("ab7c"), containsInAnyOrder("ab7c", "Ab7c", "aB7c", "AB7c", "ab7C", "Ab7C", "aB7C", "AB7C"));
     }
+
+    @Test
+    public void testProblem5(){
+        assertThat(problem5(2), containsInAnyOrder("(())", "()()"));
+        assertThat(problem5(3), containsInAnyOrder("((()))", "(()())", "(())()", "()(())", "()()()"));
+
+        assertThat(alternative_problem5(2), containsInAnyOrder("(())", "()()"));
+        assertThat(alternative_problem5(3), containsInAnyOrder("((()))", "(()())", "(())()", "()(())", "()()()"));
+    }
 }

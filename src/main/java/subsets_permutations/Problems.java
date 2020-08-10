@@ -122,4 +122,60 @@ public class Problems {
         System.out.println(output);
         return output;
     }
+
+    /**
+     * Given an integer, return a list of all strings of balanced parantheses
+     */
+    public static List<String> problem5(int n){
+        if(n <= 0)
+            return new ArrayList<>();
+        List<String> output = new ArrayList<>();
+        problem5_helper(output, new StringBuilder(), n, n);
+        return output;
+    }
+
+    public static void problem5_helper(List<String> output, StringBuilder curr, int open, int close){
+        if(open == 0 && close == 0){
+            output.add(curr.toString());
+            return;
+        }
+        if(open > 0){
+            StringBuilder sb = new StringBuilder(curr);
+            sb.append("(");
+            problem5_helper(output, sb, open - 1, close);
+        }
+        if(close > open){
+            StringBuilder sb = new StringBuilder(curr);
+            sb.append(")");
+            problem5_helper(output, sb, open, close - 1);
+        }
+    }
+
+    public static List<String> alternative_problem5(int n){
+        if(n <= 0)
+          return new ArrayList<>();
+        List<String> output = new ArrayList<>();
+        output.add("(");
+        List<int[]> dp = new ArrayList<>();
+        dp.add(new int[]{n - 1, n});
+
+        for(int i = 1; i < n * 2; i++){
+            List<String> nOutput = new ArrayList<>();
+            List<int[]> nDp = new ArrayList<>();
+            for(int j = 0; j < output.size(); j++){
+                int[] arr = dp.get(j);
+                if(arr[0] > 0){
+                    nOutput.add(output.get(j) + "(");
+                    nDp.add(new int[]{arr[0] - 1, arr[1]});
+                }
+                if(arr[1] > arr[0]){
+                    nOutput.add(output.get(j) + ")");
+                    nDp.add(new int[]{arr[0], arr[1] - 1});
+                }
+            }
+            dp = nDp; output = nOutput;
+        }
+        return output;
+    }
+
 }
