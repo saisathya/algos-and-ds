@@ -100,4 +100,26 @@ public class Problems {
             }
         }
     }
+
+    public static List<String> alternate_problem4(String s){
+        if(s == null || s.length() == 0)
+            return new ArrayList<>();
+        List<String> output = new ArrayList<>();
+        output.add(s);
+        for(int i = 0; i < s.length(); i++){
+            if(Character.isLetter(s.charAt(i))){
+                int length = output.size();
+                for(int j = 0; j < length; j++){
+                    char c = output.get(j).charAt(i);
+                    if(Character.isLowerCase(c)){
+                        StringBuilder sb = new StringBuilder(output.get(j));
+                        sb.setCharAt(i, Character.toUpperCase(c));
+                        output.add(sb.toString());
+                    }
+                }
+            }
+        }
+        System.out.println(output);
+        return output;
+    }
 }

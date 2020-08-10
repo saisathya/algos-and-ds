@@ -32,5 +32,9 @@ public class ProblemsTest {
         assertThat(problem4("c3po"), containsInAnyOrder("c3po", "C3po", "C3Po", "C3PO", "c3Po", "c3PO", "c3pO", "C3pO"));
         assertThat(problem4("ad52"), containsInAnyOrder("ad52", "Ad52", "aD52", "AD52" ));
         assertThat(problem4("ab7c"), containsInAnyOrder("ab7c", "Ab7c", "aB7c", "AB7c", "ab7C", "Ab7C", "aB7C", "AB7C"));
+
+        assertThat(alternate_problem4("c3po"), containsInAnyOrder("c3po", "C3po", "C3Po", "C3PO", "c3Po", "c3PO", "c3pO", "C3pO"));
+        assertThat(alternate_problem4("ad52"), containsInAnyOrder("ad52", "Ad52", "aD52", "AD52" ));
+        assertThat(alternate_problem4("ab7c"), containsInAnyOrder("ab7c", "Ab7c", "aB7c", "AB7c", "ab7C", "Ab7C", "aB7C", "AB7C"));
     }
 }
