@@ -294,4 +294,26 @@ public class Problems {
 
         return -1;
     }
+
+    /**
+     * Given a sorted array that is rotated, return the number of times it has been rotated
+     */
+    public static int problem9(int[] arr){
+        if(arr == null || arr.length == 0)
+            return 0;
+
+        int left = 0, right = arr.length - 1;
+        while(left < right){
+            int mid = left + (right - 2) / 2;
+            if(mid < right && arr[mid] > arr[mid + 1])
+                return mid + 1;
+            if(mid > left && arr[mid - 1] > arr[mid])
+                return mid;
+            if(arr[left] < arr[mid])
+                left = mid + 1;
+            else
+                right = mid -  1;
+        }
+        return 0;
+    }
 }
