@@ -79,4 +79,12 @@ public class ProblemsTest {
         assertEquals(10, problem6(new int[] { 4, 6, 10 }, 17));
         assertEquals(4, problem6(new int[] { 4, 6, 10 }, -1));
     }
+
+    @Test
+    public void testProblem7(){
+        assertEquals(3, problem7(new int[]{1, 3, 8, 4, 3}, 4));
+        assertEquals(1, problem7(new int[]{3, 8, 3, 1}, 8));
+        assertEquals(3, problem7(new int[]{1, 3, 8, 12}, 12));
+        assertEquals(0, problem7(new int[]{10, 9, 8}, 10));
+    }
 }
