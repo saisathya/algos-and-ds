@@ -71,4 +71,12 @@ public class ProblemsTest {
         assertEquals(4, problem5(reader, 15));
         assertEquals(-1, problem5(reader, 200));
     }
+
+    @Test
+    public void testProblem6(){
+        assertEquals(6, problem6(new int[] { 4, 6, 10 }, 6));
+        assertEquals(10, problem6(new int[] { 1, 3, 8, 10, 15 }, 12));
+        assertEquals(10, problem6(new int[] { 4, 6, 10 }, 17));
+        assertEquals(4, problem6(new int[] { 4, 6, 10 }, -1));
+    }
 }

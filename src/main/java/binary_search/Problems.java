@@ -159,4 +159,34 @@ public class Problems {
         }
         return -1;
     }
+
+    /**
+     * Given a sorted list of integers, return the value which yields the minimum difference
+     */
+    public static int problem6(int[] arr, int k){
+        if(arr == null || arr.length == 0)
+            return Integer.MIN_VALUE;
+        if(k < arr[0])
+            return arr[0];
+        if(k > arr[arr.length - 1])
+            return arr[arr.length - 1];
+
+        int left = 0, right = arr.length - 1;
+
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(arr[mid] == k)
+                return k;
+            else if(k < arr[mid])
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+
+        if(Math.abs(arr[left] - k) > Math.abs(arr[right] - k))
+            return arr[right];
+        else
+            return arr[left];
+    }
+
 }
