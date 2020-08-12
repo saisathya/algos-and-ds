@@ -54,4 +54,11 @@ public class ProblemsTest {
         assertEquals('a', problem3(new char[] { 'a', 'c', 'f', 'h' }, 'm'));
         assertEquals('a', problem3(new char[] { 'a', 'c', 'f', 'h' }, 'h'));
     }
+
+    @Test
+    public void testProblem4(){
+        assertArrayEquals(new int[]{1, 3}, problem4(new int[]{4, 6, 6, 6, 9}, 6));
+        assertArrayEquals(new int[]{3, 3,}, problem4(new int[]{1, 3, 8, 10, 15}, 10));
+        assertArrayEquals(new int[]{-1, -1}, problem4(new int[]{1, 3, 8, 10, 15}, 12));
+    }
 }

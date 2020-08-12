@@ -98,4 +98,36 @@ public class Problems {
         }
         return arr[(left) % arr.length];
     }
+
+    /**
+     * Given a list of sorted characters, return the range of a target
+     */
+    public static int[] problem4(int[] arr, int k){
+        int[] ans = new int[]{-1, -1};
+        if(arr == null || arr.length == 0)
+            return ans;
+        ans[0] = problem4_helper(arr, k , false);
+        ans[1] = problem4_helper(arr, k, true);
+        return ans;
+    }
+
+    public static int problem4_helper(int[] arr, int k, boolean findMax){
+        int left = 0, right = arr.length - 1;
+        int ans = -1;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(k < arr[mid])
+                right = mid - 1;
+            else if(k > arr[mid])
+                left = mid + 1;
+            else{
+                ans = mid;
+                if(findMax)
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+        }
+        return ans;
+    }
 }
