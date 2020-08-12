@@ -78,4 +78,24 @@ public class Problems {
             return arr[left];
         return -1;
     }
+
+    /**
+     * Given a list of sorted characters, return the letter that is strictly greater than a target, else return the smallest letter in the list
+     */
+    public static char problem3(char[] arr, char c){
+        if(arr == null || arr.length == 0)
+            return '\0';
+
+        int left = 0, right = arr.length - 1;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(arr[mid] == c)
+                return arr[(mid + 1) % arr.length];
+            else if(c < arr[mid])
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+        return arr[(left) % arr.length];
+    }
 }

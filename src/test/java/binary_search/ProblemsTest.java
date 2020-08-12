@@ -46,4 +46,12 @@ public class ProblemsTest {
         assertEquals(-1, problem2(new int[] { 4, 6, 10 }, 17));
         assertEquals(4, problem2(new int[] { 4, 6, 10 }, -1));
     }
+
+    @Test
+    public void testProblem3(){
+        assertEquals('h', problem3(new char[] { 'a', 'c', 'f', 'h' }, 'f'));
+        assertEquals('c', problem3(new char[] { 'a', 'c', 'f', 'h' }, 'b'));
+        assertEquals('a', problem3(new char[] { 'a', 'c', 'f', 'h' }, 'm'));
+        assertEquals('a', problem3(new char[] { 'a', 'c', 'f', 'h' }, 'h'));
+    }
 }
