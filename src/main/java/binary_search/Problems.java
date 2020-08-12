@@ -267,4 +267,31 @@ public class Problems {
 
         return -1;
     }
+
+    public static int problem8_alt(int[] arr, int k){
+        if(arr == null || arr.length == 0)
+            return -1;
+        int left = 0, right = arr.length - 1;
+
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(k == arr[mid])
+                return mid;
+            // the left half is sorted in ascending order
+            if(arr[left] <= arr[mid]){
+                if(k >= arr[left] && k <= arr[mid])
+                    right = mid - 1;
+                else
+                    left = mid + 1;
+            }
+            else{
+                if(k >= arr[mid] && k <= arr[right])
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+        }
+
+        return -1;
+    }
 }

@@ -92,5 +92,8 @@ public class ProblemsTest {
     public void testProblem8(){
         assertEquals(1, problem8(new int[]{10, 15, 1, 3, 8}, 15));
         assertEquals(4, problem8(new int[]{4, 5, 7, 9, 10, -1, 2}, 10));
+
+        assertEquals(1, problem8_alt(new int[]{10, 15, 1, 3, 8}, 15));
+        assertEquals(4, problem8_alt(new int[]{4, 5, 7, 9, 10, -1, 2}, 10));
     }
 }
