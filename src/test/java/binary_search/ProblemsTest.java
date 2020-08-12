@@ -87,4 +87,10 @@ public class ProblemsTest {
         assertEquals(3, problem7(new int[]{1, 3, 8, 12}, 12));
         assertEquals(0, problem7(new int[]{10, 9, 8}, 10));
     }
+
+    @Test
+    public void testProblem8(){
+        assertEquals(1, problem8(new int[]{10, 15, 1, 3, 8}, 15));
+        assertEquals(4, problem8(new int[]{4, 5, 7, 9, 10, -1, 2}, 10));
+    }
 }

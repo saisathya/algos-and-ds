@@ -239,4 +239,32 @@ public class Problems {
         }
         return -1;
     }
+
+    /**
+     * You are given a sorted list, but the list has been rotated at some point. Find a target value
+     */
+    public static int problem8(int[] arr, int k){
+        if(arr == null || arr.length == 0)
+            return -1;
+        int left = 0, right = arr.length - 1;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(arr[mid] == k)
+                return mid;
+            else if(k < arr[mid]){
+                if(k <= arr[right] && arr[right] < arr[mid])
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+            else{
+                if(k >= arr[left] && arr[left] > arr[mid])
+                    right = mid - 1;
+                else
+                    left = mid + 1;
+            }
+        }
+
+        return -1;
+    }
 }
