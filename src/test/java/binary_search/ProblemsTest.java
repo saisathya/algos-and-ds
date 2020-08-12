@@ -61,4 +61,14 @@ public class ProblemsTest {
         assertArrayEquals(new int[]{3, 3,}, problem4(new int[]{1, 3, 8, 10, 15}, 10));
         assertArrayEquals(new int[]{-1, -1}, problem4(new int[]{1, 3, 8, 10, 15}, 12));
     }
+
+    @Test
+    public void testProblem5(){
+        ArrayReader reader = new ArrayReader(new int[] { 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30 });
+        assertEquals(6, problem5(reader, 16));
+        assertEquals(-1, problem5(reader, 11));
+        reader = new ArrayReader(new int[] { 1, 3, 8, 10, 15 });
+        assertEquals(4, problem5(reader, 15));
+        assertEquals(-1, problem5(reader, 200));
+    }
 }

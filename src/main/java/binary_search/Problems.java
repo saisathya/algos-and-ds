@@ -130,4 +130,33 @@ public class Problems {
         }
         return ans;
     }
+
+    /**
+     * You are given a sorted list, that you don't know the length. Find the position of a target
+     */
+    public static int problem5(ArrayReader arr, int k){
+        if(arr == null)
+            return -1;
+        int idx = 0;
+        int increment = 1;
+        int left = 0;
+        while(arr.get(idx) < k){
+            left = idx;
+            increment *= 2;
+            idx += increment;
+        }
+        int right = idx;
+
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            int val = arr.get(mid);
+            if(val == k)
+                return mid;
+            else if(k < val)
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+        return -1;
+    }
 }
