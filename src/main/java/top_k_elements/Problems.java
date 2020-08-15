@@ -47,23 +47,43 @@ public class Problems {
         if(arr == null || arr.length == 0 || k < 0)
             return new ArrayList<>();
 
-        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> problem3_helper(b, a));
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> problem3_helper(b, a));
 
         for(int i = 0; i < arr.length; i++){
-            if(minHeap.size() < k)
-                minHeap.offer(arr[i]);
-            else if(problem3_helper(arr[i], minHeap.peek()) < 0){
-                minHeap.offer(arr[i]);
-                minHeap.poll();
+            if(maxHeap.size() < k)
+                maxHeap.offer(arr[i]);
+            else if(problem3_helper(arr[i], maxHeap.peek()) < 0){
+                maxHeap.offer(arr[i]);
+                maxHeap.poll();
             }
         }
 
-        return new ArrayList<>(minHeap);
+        return new ArrayList<>(maxHeap);
     }
 
     public static int problem3_helper(int[] a, int[] b){
         int distA = a[0] * a[0] + a[1] * a[1];
         int distB = b[0] * b[0] + b[1] * b[1];
         return Integer.compare(distA, distB);
+    }
+
+    /**
+     * You are given a list that denotes the lengths of ropes. You connect the ropes to make one long string.
+     * Each connection comes with a cost, which is the sum of the length of two ropes. Find the minimum cost to connect
+     * all ropes.
+     */
+    public static int problem4(int[] arr){
+        if(arr == null || arr.length == 0)
+            return 0;
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for(int i : arr) minHeap.offer(i);
+        int sum = 0;
+        while(minHeap.size() > 1){
+            int a = minHeap.poll();
+            int b = minHeap.poll();
+            sum = sum + a + b;
+            minHeap.offer(a + b);
+        }
+        return sum;
     }
 }

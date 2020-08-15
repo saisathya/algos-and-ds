@@ -29,6 +29,13 @@ public class ProblemsTest {
         assertThat(problem3(new int[][]{array(1, 3), array(3, 4), array(2, -1)}, 2), containsInAnyOrder(array(1, 3), array(2, -1)));
     }
 
+    @Test
+    public void testProblem4(){
+        assertEquals(33, problem4(array(1, 3, 11, 5)));
+        assertEquals(36, problem4(array(3, 4, 5, 6)));
+        assertEquals(42, problem4(array(1, 3, 11, 5, 2)));
+    }
+
 
     private static int[] array(int ...nums){
         return nums;
