@@ -128,14 +128,12 @@ public class Problems {
 
         maxHeap.addAll(map.entrySet());
 
-        String output = "";
+        StringBuilder output = new StringBuilder();
         while(!maxHeap.isEmpty()){
             Map.Entry<Character, Integer> entry = maxHeap.poll();
-            char c = entry.getKey();
-            int val = entry.getValue();
-            for(int i = 0; i < val; i++)
-                output += c;
+            for(int i = 0; i < entry.getValue(); i++)
+                output.append(entry.getKey());
         }
-        return output;
+        return output.toString();
     }
 }
