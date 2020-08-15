@@ -86,4 +86,28 @@ public class Problems {
         }
         return sum;
     }
+
+    /**
+     * given a list with non-unique elements, get the top k frequent elements
+     */
+    public static List<Integer> problem5(int[] arr, int k){
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i : arr)
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>(Map.Entry.comparingByValue());
+        for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+            if(minHeap.size() < k)
+                minHeap.offer(entry);
+            else if(minHeap.peek().getValue() < entry.getValue()){
+                minHeap.offer(entry);
+                minHeap.poll();
+            }
+        }
+        List<Integer> output = new ArrayList<>();
+        Iterator<Map.Entry<Integer, Integer>> iter = minHeap.iterator();
+        while(iter.hasNext())
+            output.add(iter.next().getKey());
+
+        return output;
+    }
 }
