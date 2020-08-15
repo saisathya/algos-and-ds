@@ -42,6 +42,12 @@ public class ProblemsTest {
         assertThat(problem5(array(5, 12, 11, 3, 11), 2), anyOf(containsInAnyOrder(11, 12), containsInAnyOrder(11, 3), containsInAnyOrder(11, 5)));
     }
 
+    @Test
+    public void testProblem6(){
+        assertEquals("ggmmrrainop", problem6("programming"));
+        assertEquals("bbbaac", problem6("abcbab"));
+    }
+
 
     private static int[] array(int ...nums){
         return nums;

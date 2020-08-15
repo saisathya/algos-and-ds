@@ -91,6 +91,9 @@ public class Problems {
      * given a list with non-unique elements, get the top k frequent elements
      */
     public static List<Integer> problem5(int[] arr, int k){
+        if(arr == null || arr.length == 0 || k < 0)
+            return new ArrayList<>();
+
         Map<Integer, Integer> map = new HashMap<>();
         for(int i : arr)
             map.put(i, map.getOrDefault(i, 0) + 1);
@@ -108,6 +111,31 @@ public class Problems {
         while(iter.hasNext())
             output.add(iter.next().getKey());
 
+        return output;
+    }
+
+    /**
+     * give a string of lower case alphabets, return the new string that sorts the alphabets in decreasing frequency
+     */
+    public static String problem6(String s){
+        if(s == null || s.length() == 0)
+            return "";
+        Map<Character, Integer> map = new HashMap<>();
+        for(char c : s.toCharArray())
+            map.put(c, map.getOrDefault(c, 0) +  1);
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>(
+                (e1, e2) -> e1.getValue() == e2.getValue() ? Character.compare(e1.getKey(), e2.getKey()) : Integer.compare(e2.getValue(), e1.getValue()));
+
+        maxHeap.addAll(map.entrySet());
+
+        String output = "";
+        while(!maxHeap.isEmpty()){
+            Map.Entry<Character, Integer> entry = maxHeap.poll();
+            char c = entry.getKey();
+            int val = entry.getValue();
+            for(int i = 0; i < val; i++)
+                output += c;
+        }
         return output;
     }
 }
