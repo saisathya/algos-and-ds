@@ -162,4 +162,38 @@ public class Problems {
             return minHeap.peek();
         }
     }
+
+    /**
+     * Given a sorted array of numbers, k-closest values to another number x, assume integers are unique
+     */
+    public static int[] problem8(int[] arr, int k, int x){
+        if(arr == null || arr.length <= k)
+            return arr;
+        int left = 0, right = arr.length - 1;
+        int idx = -1;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+            if(arr[mid] == x){
+                idx = mid;
+                break;
+            }
+            idx = mid;
+            if(x < arr[mid])
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(Math.abs(a - x), Math.abs(b - x)));
+        int start = Math.max(0, idx - k + 1);
+        int end = Math.min(arr.length - 1, idx + k - 1);
+        for(int i = start; i <= end; i++)
+            minHeap.offer(arr[i]);
+
+        int[] output = new int[k];
+        for(int i = 0; i < output.length; i++)
+            output[i] = minHeap.poll();
+        Arrays.sort(output);
+        return output;
+    }
 }

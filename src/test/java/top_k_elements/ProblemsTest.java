@@ -1,6 +1,8 @@
 package top_k_elements;
 
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
+
 import java.util.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
@@ -60,6 +62,12 @@ public class ProblemsTest {
         assertEquals(6, problem7.add(4));
     }
 
+    @Test
+    public void testProblem8(){
+        assertArrayEquals(array(6, 7, 8), problem8(array(5, 6, 7, 8, 9), 3, 7));
+        assertArrayEquals(array(4, 5, 6), problem8(array(2, 4, 5, 6, 9), 3, 6));
+        assertArrayEquals(array(5, 6, 9), problem8(array(2, 4, 5, 6, 9), 3, 10));
+    }
 
     private static int[] array(int ...nums){
         return nums;
