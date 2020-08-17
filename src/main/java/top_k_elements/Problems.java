@@ -245,4 +245,30 @@ public class Problems {
             sum += maxHeap.poll();
         return sum;
     }
+
+    /**
+     * You are given a String, return a string such that no two adjacent characters are the same. If such string is not possible, return an empty string
+     */
+    public static String problem11(String s){
+        if(s == null || s.isEmpty())
+            return "";
+        Map<Character, Integer> map = new HashMap<>();
+        for(char c : s.toCharArray())
+            map.put(c, map.getOrDefault(c, 0) + 1);
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+        maxHeap.addAll(map.entrySet());
+
+        StringBuilder output = new StringBuilder();
+        Map.Entry<Character, Integer> prev = null;
+        while(!maxHeap.isEmpty()){
+            Map.Entry<Character, Integer> curr = maxHeap.poll();
+            if(prev != null && prev.getValue() > 0)
+                maxHeap.offer(prev);
+            output.append(curr.getKey());
+            curr.setValue(curr.getValue() - 1);
+            prev = curr;
+        }
+
+        return (s.length() == output.length())? output.toString() : "";
+    }
 }

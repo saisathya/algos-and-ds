@@ -82,6 +82,21 @@ public class ProblemsTest {
         assertEquals(12, problem10(array(3, 5, 8, 7),1,4));
     }
 
+    @Test
+    public void testProblem11(){
+        assertTrue(problem11Checker(problem11("aapp")));
+        assertTrue(problem11Checker(problem11("Programming")));
+        assertEquals("", problem11("aapa"));
+    }
+
+    public static boolean problem11Checker(String s){
+        for(int i = 0; i < s.length() - 1; i++){
+            if(s.charAt(i) == s.charAt(i + 1))
+                return false;
+        }
+        return true;
+    }
+
     private static int[] array(int ...nums){
         return nums;
     }
