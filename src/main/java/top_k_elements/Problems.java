@@ -226,4 +226,23 @@ public class Problems {
 
         return uniqueCount - (k - removed);
     }
+
+    /**
+     * Given an array, find the sum of the values between the i-th (exclusive) and j-th exclusive smallest element
+     */
+    public static int problem10(int[] arr, int I, int J){
+        if(arr == null || J < I || J - I + 1 > arr.length)
+            throw new IllegalArgumentException();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+        for(int i : arr){
+            if(maxHeap.size() < J || i < maxHeap.peek())
+                maxHeap.offer(i);
+            if(maxHeap.size() >= J)
+                maxHeap.poll();
+        }
+        int sum = 0;
+        while(maxHeap.size() > I)
+            sum += maxHeap.poll();
+        return sum;
+    }
 }

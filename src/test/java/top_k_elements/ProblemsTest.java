@@ -76,6 +76,12 @@ public class ProblemsTest {
         assertEquals(3, problem9(array(1, 2, 3, 3, 3, 3, 4, 4, 5, 5, 5), 2));
     }
 
+    @Test
+    public void testProblem10(){
+        assertEquals(23, problem10(array(1, 3, 12, 5, 15, 11), 3, 6));
+        assertEquals(12, problem10(array(3, 5, 8, 7),1,4));
+    }
+
     private static int[] array(int ...nums){
         return nums;
     }
