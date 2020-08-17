@@ -1,13 +1,11 @@
 package top_k_elements;
 
 import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
 
-import java.util.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static top_k_elements.Problems.*;
-import static java.util.Arrays.*;
+import java.util.*;
 
 public class ProblemsTest {
     @Test
@@ -84,14 +82,29 @@ public class ProblemsTest {
 
     @Test
     public void testProblem11(){
-        assertTrue(problem11Checker(problem11("aapp")));
-        assertTrue(problem11Checker(problem11("Programming")));
+        assertTrue(noSameAdjChars(problem11("aapp"), 2));
+        assertTrue(noSameAdjChars(problem11("Programming"), 2));
         assertEquals("", problem11("aapa"));
     }
 
-    public static boolean problem11Checker(String s){
-        for(int i = 0; i < s.length() - 1; i++){
-            if(s.charAt(i) == s.charAt(i + 1))
+    @Test
+    public void testProblem12(){
+        assertTrue(noSameAdjChars(problem12("mmpp", 2), 2));
+        assertTrue(noSameAdjChars(problem12("Programming", 3), 2));
+        assertTrue(noSameAdjChars(problem12("aab", 2), 2));
+        assertEquals("", problem12("aappa", 3));
+    }
+
+    public static boolean noSameAdjChars(String s, int k){
+        Set<Character> set = new HashSet<>();
+        int left = 0, right = 0;
+        for(; right < s.length(); right++){
+            if(right >= k){
+                set.remove(s.charAt(left));
+                left++;
+            }
+            set.add(s.charAt(right));
+            if(right - left + 1 == k && set.size() != k)
                 return false;
         }
         return true;

@@ -271,4 +271,32 @@ public class Problems {
 
         return (s.length() == output.length())? output.toString() : "";
     }
+
+    /**
+     * Given a string and an integer k, find if we can rearrange the string such that all same characters are at least k positions apart
+     */
+    public static String problem12(String s, int k){
+        if(s == null || s.length() == 0)
+            return s;
+        Map<Character, Integer> map = new HashMap<>();
+        for(char c : s.toCharArray())
+            map.put(c, map.getOrDefault(c, 0) + 1);
+
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+        maxHeap.addAll(map.entrySet());
+
+        LinkedList<Map.Entry<Character, Integer>> prevEntries = new LinkedList<>();
+        StringBuilder output = new StringBuilder();
+        while(!maxHeap.isEmpty()){
+            Map.Entry<Character, Integer> entry = maxHeap.poll();
+            if(prevEntries.size() == k && prevEntries.getFirst().getValue() > 0)
+                maxHeap.offer(prevEntries.removeFirst());
+
+            output.append(entry.getKey());
+            entry.setValue(entry.getValue() - 1);
+            prevEntries.add(entry);
+        }
+
+        return (output.length() == s.length())? output.toString() : "";
+    }
 }
