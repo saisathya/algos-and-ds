@@ -95,6 +95,12 @@ public class ProblemsTest {
         assertEquals("", problem12("aappa", 3));
     }
 
+    @Test
+    public void testProblem13(){
+        assertEquals(7, problem13(array('a', 'a', 'a', 'b', 'c', 'c'), 2));
+        assertEquals(5, problem13(array('a', 'b', 'a'), 3));
+    }
+
     public static boolean noSameAdjChars(String s, int k){
         Set<Character> set = new HashSet<>();
         int left = 0, right = 0;
@@ -112,6 +118,10 @@ public class ProblemsTest {
 
     private static int[] array(int ...nums){
         return nums;
+    }
+
+    private static char[] array(char ...chars){
+        return chars;
     }
 
 }

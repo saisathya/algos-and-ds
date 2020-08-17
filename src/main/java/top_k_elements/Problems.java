@@ -299,4 +299,38 @@ public class Problems {
 
         return (output.length() == s.length())? output.toString() : "";
     }
+
+    /**
+     * You are given a list of tasks and an interval. Once a task is run, it has to wait for at least k intervals to run again.
+     * Find the minimum number of intervals required to finish all tasks
+     */
+    public static int problem13(char[] tasks, int k){
+        if(tasks == null || tasks.length == 0)
+            return 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for(char c : tasks)
+            map.put(c, map.getOrDefault(c, 0) + 1);
+
+        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b.getValue(), a.getValue()));
+        maxHeap.addAll(map.entrySet());
+
+        LinkedList<Map.Entry<Character, Integer>> prevTasks = new LinkedList<>();
+        int intervals = 0;
+        while(!maxHeap.isEmpty() || !prevTasks.isEmpty()){
+            intervals++;
+            Map.Entry<Character, Integer> entry = null;
+            if(!maxHeap.isEmpty())
+                entry = maxHeap.poll();
+            if(prevTasks.size() == k){
+                Map.Entry<Character, Integer> prev = prevTasks.removeFirst();
+                if(prev != null && prev.getValue() > 0) maxHeap.offer(entry);
+            }
+            if(entry != null){
+                entry.setValue(entry.getValue() - 1);
+                prevTasks.addFirst(entry);
+            }
+        }
+
+        return intervals;
+    }
 }
