@@ -196,4 +196,34 @@ public class Problems {
         Arrays.sort(output);
         return output;
     }
+
+    /**
+     * You are given an array of integers. You have to remove a maximum of K numbers, in order to obtain
+     * an array with the most unique numbers
+     */
+    public static int problem9(int[] arr, int k){
+        if(arr == null || arr.length == 0)
+            return 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i : arr)
+            map.put(i, map.getOrDefault(i, 0) + 1);
+
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>((a, b) -> Integer.compare(a.getValue(), b.getValue()));
+        minHeap.addAll(map.entrySet());
+
+        int removed = 0;
+        int uniqueCount = 0;
+        while(!minHeap.isEmpty() && removed < k){
+            Map.Entry<Integer, Integer> entry = minHeap.poll();
+            if(entry.getValue() == 1)
+                uniqueCount++;
+            else{
+                entry.setValue(entry.getValue() - 1);
+                minHeap.offer(entry);
+                removed++;
+            }
+        }
+
+        return uniqueCount - (k - removed);
+    }
 }
