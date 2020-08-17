@@ -48,6 +48,18 @@ public class ProblemsTest {
         assertEquals("bbbaac", problem6("abcbab"));
     }
 
+    @Test
+    public void testProblem7(){
+        Problem7 problem7 = new Problem7(array(12, 2, 1, 7, 3, 6, 5, 10), 5);
+        assertEquals(5, problem7.add(3));
+        assertEquals(6, problem7.add(7));
+        assertEquals(6, problem7.add(6));
+        problem7 = new Problem7(array(3, 1, 5, 12, 2, 11), 4);
+        assertEquals(5, problem7.add(6));
+        assertEquals(6, problem7.add(13));
+        assertEquals(6, problem7.add(4));
+    }
+
 
     private static int[] array(int ...nums){
         return nums;
