@@ -141,28 +141,25 @@ public class Problems {
      * Design a class that takes in a stream of numbers and returns the K-th largest value
      */
     public static class Problem7{
-        PriorityQueue<Integer> leftHalf, rightHalf;
+        PriorityQueue<Integer> minHeap;
         int k;
 
         public Problem7(int[] arr, int k){
             this.k = k;
-            leftHalf = new PriorityQueue<>(Comparator.reverseOrder());
-            rightHalf = new PriorityQueue<>();
+            minHeap = new PriorityQueue<>();
 
             for(int i = 0; i < arr.length; i++)
                 add(arr[i]);
         }
 
         public int add(int val){
-            if(rightHalf.size() <= k || val > rightHalf.peek())
-                rightHalf.offer(val);
-            else
-                leftHalf.offer(val);
+            if(minHeap.size() <= k || val > minHeap.peek())
+                minHeap.offer(val);
 
-            if(rightHalf.size() > k)
-                leftHalf.offer(rightHalf.poll());
+            if(minHeap.size() > k)
+                minHeap.poll();
 
-            return rightHalf.peek();
+            return minHeap.peek();
         }
     }
 }
