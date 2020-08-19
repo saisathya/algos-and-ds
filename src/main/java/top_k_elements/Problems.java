@@ -310,27 +310,33 @@ public class Problems {
         Map<Character, Integer> map = new HashMap<>();
         for(char c : tasks)
             map.put(c, map.getOrDefault(c, 0) + 1);
-
         PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>((a, b) -> Integer.compare(b.getValue(), a.getValue()));
         maxHeap.addAll(map.entrySet());
 
-        LinkedList<Map.Entry<Character, Integer>> prevTasks = new LinkedList<>();
-        int intervals = 0;
-        while(!maxHeap.isEmpty() || !prevTasks.isEmpty()){
-            intervals++;
-            Map.Entry<Character, Integer> entry = null;
-            if(!maxHeap.isEmpty())
-                entry = maxHeap.poll();
-            if(prevTasks.size() == k){
-                Map.Entry<Character, Integer> prev = prevTasks.removeFirst();
-                if(prev != null && prev.getValue() > 0) maxHeap.offer(entry);
+        LinkedList<Map.Entry<Character, Integer>> list = new LinkedList<>();
+        int count = 0, tasksRemoved = 0;
+        while(tasksRemoved < map.size()){
+            count++;
+            if(maxHeap.isEmpty())
+                list.addFirst(null);
+            else{
+                Map.Entry<Character, Integer> entry = maxHeap.poll();
+                if(entry.getValue() > 1)
+                    list.addFirst(entry);
+                else{
+                    tasksRemoved++;
+                    list.addFirst(null);
+                }
             }
-            if(entry != null){
-                entry.setValue(entry.getValue() - 1);
-                prevTasks.addFirst(entry);
+            if(list.size() > k){
+                Map.Entry<Character, Integer> entry = list.removeLast();
+                if(entry != null){
+                    entry.setValue(entry.getValue() - 1);
+                    maxHeap.offer(entry);
+                }
             }
         }
 
-        return intervals;
+        return count;
     }
 }
