@@ -101,6 +101,21 @@ public class ProblemsTest {
         assertEquals(5, problem13(array('a', 'b', 'a'), 3));
     }
 
+    @Test
+    public void testProblem14(){
+        Problem14 problem14 = new Problem14();
+        problem14.push(1);
+        problem14.push(2);
+        problem14.push(3);
+        problem14.push(2);
+        problem14.push(1);
+        problem14.push(2);
+        problem14.push(5);
+        assertEquals(2, problem14.pop());
+        assertEquals(1, problem14.pop());
+        assertEquals(2, problem14.pop());
+    }
+
     public static boolean noSameAdjChars(String s, int k){
         Set<Character> set = new HashSet<>();
         int left = 0, right = 0;

@@ -339,4 +339,66 @@ public class Problems {
 
         return count;
     }
+
+    /**
+     * Implement a stack with the two following operatons
+     * pop: returns the element with the most frequency in the stack. If two items are tied, return the number  that was added the latest
+     * push: push an item into the stack
+     */
+    public static class Problem14{
+        Map<Integer, Node> map = new HashMap<>();
+        PriorityQueue<Node> maxHeap = new PriorityQueue<>(
+                (a, b) -> a.list.size() == b.list.size()? Integer.compare(b.list.peekLast(), a.list.peekLast()) : Integer.compare(b.list.size(), a.list.size()));
+        int order = 0;
+        public void push(int num){
+            Node n;
+
+            if(!map.containsKey(num)){
+                n = new Node(num);
+                map.put(num, n);
+            }
+            else{
+                n = map.get(num);
+                maxHeap.remove(n);
+            }
+            n.add(order);
+            maxHeap.offer(n);
+            order++;
+        }
+
+        public int pop(){
+            Node n = maxHeap.poll();
+            if(n.remove()){
+                map.remove(n.val);
+            }
+            else{
+                maxHeap.offer(n);
+            }
+            return n.val;
+        }
+
+        class Node {
+            int val;
+            LinkedList<Integer> list;
+            Node(int val){
+                this.val = val;
+                this.list = new LinkedList<>();
+            }
+
+            void add(int order){
+                this.list.addLast(order);
+            }
+
+            boolean remove(){
+                this.list.removeLast();
+                return this.list.isEmpty();
+            }
+
+            @Override
+            public boolean equals(Object o){
+                Node n = (Node) o;
+                return val == n.val;
+            }
+        }
+    }
 }
