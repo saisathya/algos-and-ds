@@ -17,4 +17,11 @@ public class ProblemsTest {
         assertEquals(22, bottom_up_knapsack(weights, profits, capacity));
         assertEquals(22, problem1(weights, profits, capacity));
     }
+
+    @Test
+    public void problem2(){
+        assertTrue(problem2_bruteForce(new int[]{1, 2, 3, 4}));
+        assertTrue(problem2_bruteForce(new int[]{1, 1, 3, 4, 7}));
+        assertFalse(problem2_bruteForce(new int[]{2, 3, 4, 6}));
+    }
 }

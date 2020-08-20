@@ -81,4 +81,21 @@ public class Problems {
         return dp[capacity];
     }
 
+    /**
+     * Given a list of integers, find if it is possible to create to subsets of equal sum using all the elements
+     */
+    public static boolean problem2_bruteForce(int[] arr){
+        if(arr == null || arr.length == 0)
+            return true;
+
+        return problem2_bruteForce_recurse(arr, 0, 0, 0);
+    }
+
+    public static boolean problem2_bruteForce_recurse(int[] arr, int a, int b, int index){
+        if(index == arr.length)
+            return a == b;
+        else
+            return problem2_bruteForce_recurse(arr, arr[index] + a, b, index + 1) ||
+                    problem2_bruteForce_recurse(arr, a, arr[index] + b, index + 1);
+    }
 }
