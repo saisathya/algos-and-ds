@@ -42,6 +42,12 @@ public class ProblemsTest {
         assertArrayEquals(new int[]{9, 12}, problem4(Arrays.asList(new int[]{4, 12}, new int[]{1, 9}, new int[]{7, 10, 16})));
     }
 
+    @Test
+    public void testProblem5(){
+        assertThat(problem5(new int[]{9, 8, 2}, new int[]{6, 3, 1}, 3), containsInAnyOrder(new int[]{9, 6}, new int[]{9, 3}, new int[]{8, 6}));
+        assertThat(problem5(new int[]{5, 2, 1}, new int[]{2, -1}, 3), containsInAnyOrder(new int[]{5, 2}, new int[]{5, -1}, new int[]{2, 2}));
+    }
+
     private static ListNode createNode(int i, int j){
         ListNode output = new ListNode(-1), curr = output;
         for(; i <= j; i++){

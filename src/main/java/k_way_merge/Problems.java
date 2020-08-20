@@ -115,6 +115,30 @@ public class Problems {
         return output;
     }
 
+    /**
+     * You are given to arrays sorted in descenging order, your goal is to find k-pairs that is has the largest sum
+     */
+    public static List<int[]> problem5(int[] arr1, int[] arr2, int k){
+        if(arr1 == null || arr2 == null || arr1.length == 0 || arr2.length == 0 || arr1.length * arr2.length < k || k <= 0)
+            throw new IllegalArgumentException();
+
+        int len1 = Math.min(k , arr1.length);
+        int len2 = Math.min(k, arr2.length);
+        PriorityQueue<int[]> minheap = new PriorityQueue<>((a, b) -> Integer.compare(a[0] + a[1], b[0] + b[1]));
+
+        for(int i = 0; i < len1; i++){
+            for(int j = 0; j < len2; j++){
+                if(minheap.size() < k)
+                    minheap.offer(new int[]{arr1[i], arr2[j]});
+                else if(arr1[i] + arr2[j] > minheap.peek()[0] + minheap.peek()[1]){
+                    minheap.offer(new int[]{arr1[i], arr2[j]});
+                    minheap.poll();
+                }
+            }
+        }
+        return new ArrayList<>(minheap);
+    }
+
     private static class Node{
         int row, col;
         Node(int row, int col){
