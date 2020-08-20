@@ -15,5 +15,6 @@ public class ProblemsTest {
         assertEquals(22, knapsack1(weights, profits, capacity));
         assertEquals(22, memoized_knapsack(weights, profits, capacity));
         assertEquals(22, bottom_up_knapsack(weights, profits, capacity));
+        assertEquals(22, problem1(weights, profits, capacity));
     }
 }

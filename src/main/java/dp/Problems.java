@@ -65,4 +65,20 @@ public class Problems {
         }
         return dp[weights.length - 1][capacity];
     }
+
+    public static int problem1(int[] weights, int[] profits, int capacity){
+        if(weights == null || profits == null || weights.length != profits.length || capacity <= 0)
+            return 0;
+
+        int[] dp = new int[capacity + 1];
+
+        for(int i = 0; i < weights.length; i++){
+            for(int c = capacity; c >= 0; c--){
+                if(c - weights[i] >= 0)
+                    dp[c] = Math.max(dp[c], dp[c - weights[i]] + profits[i]);
+            }
+        }
+        return dp[capacity];
+    }
+
 }
