@@ -30,6 +30,12 @@ public class ProblemsTest {
         assertEquals(7, problem2(new ListNode[]{three, two , one}, 15));
     }
 
+    @Test
+    public void testProblem3(){
+        int[][] matrix = new int[][]{new int[]{2, 6, 8}, new int[]{3, 7, 10}, new int[]{5, 8, 11}};
+        assertEquals(7, problem3(matrix, 5));
+    }
+
     private static ListNode createNode(int i, int j){
         ListNode output = new ListNode(-1), curr = output;
         for(; i <= j; i++){
