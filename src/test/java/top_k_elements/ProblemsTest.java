@@ -1,7 +1,6 @@
 package top_k_elements;
 
 import org.junit.Test;
-
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static top_k_elements.Problems.*;
