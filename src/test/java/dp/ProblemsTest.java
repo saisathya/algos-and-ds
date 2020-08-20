@@ -14,5 +14,6 @@ public class ProblemsTest {
         int capacity = 7;
         assertEquals(22, knapsack1(weights, profits, capacity));
         assertEquals(22, memoized_knapsack(weights, profits, capacity));
+        assertEquals(22, bottom_up_knapsack(weights, profits, capacity));
     }
 }

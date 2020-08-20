@@ -41,4 +41,28 @@ public class Problems {
 
         return dp[index][capacity];
     }
+
+    public static int bottom_up_knapsack(int[] weights, int[] profits, int capacity){
+        if(weights == null || profits == null || weights.length != profits.length || capacity <= 0)
+            return 0;
+        int[][] dp = new int[weights.length][capacity + 1];
+
+        for(int i = 0; i < weights.length; i++)
+            dp[i][0] = 0;
+
+        for(int c = 0; c <= capacity; c++){
+            if(weights[0] <= c)
+                dp[0][c] = profits[0];
+        }
+
+        for(int i = 1; i < dp.length; i++){
+            for(int c = 1; c <= capacity ; c++){
+                int profit = 0;
+                if(weights[i] <= c)
+                    profit = profits[i] + dp[i - 1][c - weights[i]];
+                dp[i][c] = Math.max(profit, dp[i - 1][c]);
+            }
+        }
+        return dp[weights.length - 1][capacity];
+    }
 }
