@@ -22,6 +22,23 @@ public class Problems {
     }
 
     public static int memoized_knapsack(int[] weights, int[] profits, int capacity){
+        Integer[][] dp = new Integer[weights.length][capacity + 1];
+        return memoized_knapsack_recurse(weights, profits, capacity, dp, 0);
+    }
 
+    public static int memoized_knapsack_recurse(int[] weights, int[] profits, int capacity, Integer[][] dp, int index){
+        if(capacity <= 0 || index >= weights.length)
+            return 0;
+
+        if(dp[index][capacity] != null)
+            return dp[index][capacity];
+
+        int a = memoized_knapsack_recurse(weights, profits, capacity, dp, index + 1);
+        int b = Integer.MIN_VALUE;
+        if(weights[index] <= capacity)
+            b = profits[index] + memoized_knapsack_recurse(weights, profits, capacity - weights[index], dp, index + 1);
+        dp[index][capacity] = Math.max(a, b);
+
+        return dp[index][capacity];
     }
 }

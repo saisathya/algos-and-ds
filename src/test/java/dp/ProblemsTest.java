@@ -13,5 +13,6 @@ public class ProblemsTest {
         int[] profits = new int[]{1, 6, 10, 16};
         int capacity = 7;
         assertEquals(22, knapsack1(weights, profits, capacity));
+        assertEquals(22, memoized_knapsack(weights, profits, capacity));
     }
 }
