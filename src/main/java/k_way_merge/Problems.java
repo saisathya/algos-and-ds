@@ -84,6 +84,37 @@ public class Problems {
         return matrix[node.row][node.col];
     }
 
+    /**
+     * You are given a List of k-sorted integer arrays. Find the smallest range such that the range encompasses values present at all three arrays
+     */
+    public static int[] problem4(List<int[]> lists){
+        if(lists == null)
+            return new int[]{Integer.MIN_VALUE, Integer.MIN_VALUE};
+        int[] output = null;
+
+        PriorityQueue<Node> minheap = new PriorityQueue<>((a, b) -> Integer.compare(lists.get(a.row)[a.col], lists.get(b.row)[b.col]));
+        int currMax = Integer.MIN_VALUE;
+        for(int i = 0; i < lists.size(); i++){
+            if(lists.get(i).length > 0){
+                minheap.offer(new Node(i, 0));
+                currMax = Math.max(currMax, lists.get(i)[0]);
+            }
+        }
+
+        while(minheap.size() >= lists.size()){
+            Node min = minheap.poll();
+
+            if(output == null || currMax - lists.get(min.row)[min.col] < output[1] - output[0])
+                output = new int[]{lists.get(min.row)[min.col], currMax};
+
+            if(min.col + 1 < lists.get(min.row).length){
+                minheap.offer(new Node(min.row, min.col + 1));
+                currMax = Math.max(currMax, lists.get(min.row)[min.col + 1]);
+            }
+        }
+        return output;
+    }
+
     private static class Node{
         int row, col;
         Node(int row, int col){

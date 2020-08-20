@@ -36,6 +36,12 @@ public class ProblemsTest {
         assertEquals(7, problem3(matrix, 5));
     }
 
+    @Test
+    public void testProblem4(){
+        assertArrayEquals(new int[]{4, 7}, problem4(Arrays.asList(new int[]{4, 12}, new int[]{1, 5, 8}, new int[]{7, 8, 10})));
+        assertArrayEquals(new int[]{9, 12}, problem4(Arrays.asList(new int[]{4, 12}, new int[]{1, 9}, new int[]{7, 10, 16})));
+    }
+
     private static ListNode createNode(int i, int j){
         ListNode output = new ListNode(-1), curr = output;
         for(; i <= j; i++){
