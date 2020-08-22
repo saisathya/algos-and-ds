@@ -20,16 +20,24 @@ public class ProblemsTest {
 
     @Test
     public void problem2(){
+        // brute force
         assertTrue(problem2_bruteForce(new int[]{1, 2, 3, 4}));
         assertTrue(problem2_bruteForce(new int[]{1, 1, 3, 4, 7}));
         assertFalse(problem2_bruteForce(new int[]{2, 3, 4, 6}));
         assertFalse(problem2_bruteForce(new int[]{1, 1, 2, 3, 6}));
-
+        //top-down
+        assertTrue(problem2_topdown(new int[]{1, 2, 3, 4}));
+        assertTrue(problem2_topdown(new int[]{2, 3, 5}));
+        assertTrue(problem2_topdown(new int[]{1, 1, 3, 4, 7}));
+        assertFalse(problem2_topdown(new int[]{2, 3, 4, 6}));
+        assertTrue(problem2_topdown(new int[]{1, 2, 3, 6}));
+        //bottom-up
         assertTrue(problem2_dp(new int[]{1, 2, 3, 4}));
         assertTrue(problem2_dp(new int[]{2, 3, 5}));
         assertTrue(problem2_dp(new int[]{1, 1, 3, 4, 7}));
         assertFalse(problem2_dp(new int[]{2, 3, 4, 6}));
         assertTrue(problem2_dp(new int[]{1, 2, 3, 6}));
+
     }
 
     @Test

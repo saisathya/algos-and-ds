@@ -108,6 +108,41 @@ public class Problems {
                     problem2_bruteForce_recurse(arr, acc, sum , index + 1);
     }
 
+    public static boolean problem2_topdown(int[] arr) {
+        if(arr == null || arr.length == 0)
+            return false;
+        int sum = 0;
+        for(int i : arr)
+            sum += i;
+        if(sum % 2 == 1)
+            return false;
+        int mid = sum / 2;
+        Boolean[][] dp = new Boolean[arr.length][mid + 1];
+
+        return problem2_topdown_recurse(arr, dp, mid, 0);
+    }
+
+    public static boolean problem2_topdown_recurse(int[] arr, Boolean[][] dp, int sum , int idx){
+//        if(idx >= arr.length)
+//            return false;
+//        if(sum == 0)
+//            return true;
+//
+//        if(dp[idx][sum] == null){
+//            if(arr[idx] <= sum){
+//                if(problem2_topdown_recurse(arr, dp, sum - arr[idx], idx + 1)){
+//                    dp[idx][sum] = true;
+//                    return true;
+//                }
+//            }
+//        }
+//
+//        dp[idx][sum] = problem2_topdown_recurse(arr, dp, sum, idx + 1);
+//        return dp[idx][sum];
+    }
+
+
+
     public static boolean problem2_dp(int[] arr){
         if(arr == null || arr.length == 0)
             return true;
