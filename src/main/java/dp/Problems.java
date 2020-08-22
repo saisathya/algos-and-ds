@@ -179,28 +179,17 @@ public class Problems {
             return false;
         int mid = sum / 2;
 
-        boolean[] dp0 = new boolean[mid + 1];
-        boolean[] dp1 = new boolean[mid + 1];
-        dp0[0] = true;
-        for(int i = 0; i <= mid; i++)
-            dp0[i] = i == arr[0];
+        boolean[] dp = new boolean[mid + 1];
+        dp[0] = true;
 
-        for(int i = 1; i < arr.length; i++){
+        for(int i = 0; i < arr.length; i++){
             for(int j = arr[i]; j <= mid; j++){
-                if(i % 2 == 1){
-                    // work on dp1
-                    if(j - arr[i] >= 0)
-                        dp1[j] = dp0[j - arr[i]] || dp0[j];
-                }
-                else{
-                    // work on dp0
-                    if(j - arr[i] >= 0)
-                        dp0[j] = dp1[j - arr[i]] || dp1[j];
-                }
+                if(j - arr[i] >= 0)
+                    dp[j] = dp[j - arr[i]];
             }
         }
 
-        return dp1[mid];
+        return dp[mid];
     }
 
     /**
