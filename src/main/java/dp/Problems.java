@@ -98,4 +98,27 @@ public class Problems {
             return problem2_bruteForce_recurse(arr, arr[index] + a, b, index + 1) ||
                     problem2_bruteForce_recurse(arr, a, arr[index] + b, index + 1);
     }
+
+    public static boolean problem2_dp(int[] arr){
+        if(arr == null || arr.length == 0)
+            return true;
+        int sum = 0;
+        for(int i : arr)
+            sum += i;
+        if(sum % 2 == 1)
+            return false;
+
+        int mid = sum / 2;
+        boolean[] dp  = new boolean[mid + 1];
+        dp[0] = true;
+        for(int i = 0; i < dp.length; i++){
+            if(dp[i]){
+                for(int j : arr){
+                    if(i + j < dp.length)
+                        dp[i + j] = true;
+                }
+            }
+        }
+        return dp[mid];
+    }
 }
