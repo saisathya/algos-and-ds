@@ -1,5 +1,7 @@
 package dp;
 
+import java.util.*;
+
 public class Problems {
     /**
      * template for the most primitive version of 0/1 knapsack
@@ -87,16 +89,23 @@ public class Problems {
     public static boolean problem2_bruteForce(int[] arr){
         if(arr == null || arr.length == 0)
             return true;
-
-        return problem2_bruteForce_recurse(arr, 0, 0, 0);
+        int sum = 0;
+        for(int i : arr)
+            sum += i;
+        if(sum % 2 == 1)
+            return false;
+        int mid = sum / 2;
+        return problem2_bruteForce_recurse(arr, 0, mid, 0);
     }
 
-    public static boolean problem2_bruteForce_recurse(int[] arr, int a, int b, int index){
-        if(index == arr.length)
-            return a == b;
+    public static boolean problem2_bruteForce_recurse(int[] arr, int acc, int sum , int index){
+        if(index >= arr.length)
+            return false;
+        if(acc == sum)
+            return true;
         else
-            return problem2_bruteForce_recurse(arr, arr[index] + a, b, index + 1) ||
-                    problem2_bruteForce_recurse(arr, a, arr[index] + b, index + 1);
+            return problem2_bruteForce_recurse(arr, acc + arr[index], sum, index + 1) ||
+                    problem2_bruteForce_recurse(arr, acc, sum , index + 1);
     }
 
     public static boolean problem2_dp(int[] arr){
@@ -120,5 +129,25 @@ public class Problems {
             }
         }
         return dp[mid];
+    }
+
+    /**
+     * you are give a set of positive numbers and sum, determine if you can create a subset of
+     * positive numbers whose sum is S
+     */
+    public static boolean problem3(List<Integer> list, int sum){
+        if(list == null || list.isEmpty())
+            return sum == 0;
+        boolean[] dp = new boolean[sum + 1];
+        dp[0] = true;
+        for(int i = 0; i <= sum ; i++) {
+            if(dp[i]) {
+                for(int j : list){
+                    if(i + j <= sum)
+                        dp[i + j] = true;
+                }
+            }
+        }
+        return dp[sum];
     }
 }
