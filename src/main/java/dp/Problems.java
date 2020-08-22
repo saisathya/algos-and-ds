@@ -123,27 +123,27 @@ public class Problems {
     }
 
     public static boolean problem2_topdown_recurse(int[] arr, Boolean[][] dp, int sum , int idx){
-//        if(idx >= arr.length)
-//            return false;
-//        if(sum == 0)
-//            return true;
-//
-//        if(dp[idx][sum] == null){
-//            if(arr[idx] <= sum){
-//                if(problem2_topdown_recurse(arr, dp, sum - arr[idx], idx + 1)){
-//                    dp[idx][sum] = true;
-//                    return true;
-//                }
-//            }
-//        }
-//
-//        dp[idx][sum] = problem2_topdown_recurse(arr, dp, sum, idx + 1);
-//        return dp[idx][sum];
+        if(idx >= arr.length)
+            return false;
+        if(sum == 0)
+            return true;
+
+        if(dp[idx][sum] == null){
+            if(arr[idx] <= sum){
+                if(problem2_topdown_recurse(arr, dp, sum - arr[idx], idx + 1)){
+                    dp[idx][sum] = true;
+                    return true;
+                }
+            }
+        }
+
+        dp[idx][sum] = problem2_topdown_recurse(arr, dp, sum, idx + 1);
+        return dp[idx][sum];
     }
 
 
 
-    public static boolean problem2_dp(int[] arr){
+    public static boolean problem2_bottom_up(int[] arr){
         if(arr == null || arr.length == 0)
             return true;
         int sum = 0;
@@ -151,19 +151,56 @@ public class Problems {
             sum += i;
         if(sum % 2 == 1)
             return false;
-
         int mid = sum / 2;
-        boolean[] dp  = new boolean[mid + 1];
-        dp[0] = true;
-        for(int i = 0; i < dp.length; i++){
-            if(dp[i]){
-                for(int j : arr){
-                    if(i + j < dp.length)
-                        dp[i + j] = true;
+        boolean[][] dp = new boolean[arr.length][mid + 1];
+        for(int i = 0; i < dp[0].length; i++)
+            dp[0][i] = arr[0] == i;
+        for(int i = 0; i < dp.length; i++)
+            dp[i][0] = true;
+
+        for(int i = 1; i < arr.length; i++){
+            for(int j = arr[i]; j <= mid; j++){
+                if(j - arr[i] >= 0)
+                    dp[i][j] = dp[i - 1][j - arr[i]] || dp[i - 1][j];
+            }
+        }
+
+        return dp[arr.length - 1][mid];
+    }
+
+    public static boolean problem2_bottom_up_linear_space(int[] arr){
+        if(arr == null || arr.length == 0)
+            return true;
+
+        int sum = 0;
+        for(int i : arr)
+            sum += i;
+        if(sum % 2 == 1)
+            return false;
+        int mid = sum / 2;
+
+        boolean[] dp0 = new boolean[mid + 1];
+        boolean[] dp1 = new boolean[mid + 1];
+        dp0[0] = true;
+        for(int i = 0; i <= mid; i++)
+            dp0[i] = i == arr[0];
+
+        for(int i = 1; i < arr.length; i++){
+            for(int j = arr[i]; j <= mid; j++){
+                if(i % 2 == 1){
+                    // work on dp1
+                    if(j - arr[i] >= 0)
+                        dp1[j] = dp0[j - arr[i]] || dp0[j];
+                }
+                else{
+                    // work on dp0
+                    if(j - arr[i] >= 0)
+                        dp0[j] = dp1[j - arr[i]] || dp1[j];
                 }
             }
         }
-        return dp[mid];
+
+        return dp1[mid];
     }
 
     /**
