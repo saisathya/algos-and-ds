@@ -48,6 +48,7 @@ public class ProblemsTest {
 
     @Test
     public void testProblem3(){
+        // brute force
         assertTrue(problem3(Arrays.asList(1, 2, 3, 7), 6));
         assertTrue(problem3(Arrays.asList(1, 2, 7, 1, 5), 10));
         assertFalse(problem3(Arrays.asList(1, 3, 4, 8), 6));

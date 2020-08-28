@@ -108,6 +108,7 @@ public class Problems {
                     problem2_bruteForce_recurse(arr, acc, sum , index + 1);
     }
 
+    // TODO: figure out why this works
     public static boolean problem2_topdown(int[] arr) {
         if(arr == null || arr.length == 0)
             return false;
@@ -197,18 +198,24 @@ public class Problems {
      * positive numbers whose sum is S
      */
     public static boolean problem3(List<Integer> list, int sum){
-        if(list == null || list.isEmpty())
-            return sum == 0;
-        boolean[] dp = new boolean[sum + 1];
-        dp[0] = true;
-        for(int i = 0; i <= sum ; i++) {
-            if(dp[i]) {
-                for(int j : list){
-                    if(i + j <= sum)
-                        dp[i + j] = true;
-                }
-            }
+        if((list == null || list.size() == 0 ) && sum != 0)
+            return false;
+        return problem3_helper(list, sum, new HashSet<>(), 0);
+    }
+
+    public static boolean problem3_helper(List<Integer> list, int sum, Set<Integer> used, int curr){
+        if(curr == sum)
+            return true;
+        if(used.size() == list.size())
+            return false;
+        for(int i = 0; i < list.size(); i++){
+            if(used.add(i))
+                return problem3_helper(list, sum, used, curr + list.get(i)) || problem3_helper(list, sum , used, curr);
         }
-        return dp[sum];
+        return false;
+    }
+
+    public static boolean problem3_top_down(List<Integer> list, int sum){
+
     }
 }
