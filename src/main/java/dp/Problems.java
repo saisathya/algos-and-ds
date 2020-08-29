@@ -267,4 +267,22 @@ public class Problems {
         return dp[sum];
     }
 
+    /**
+     * Given a list of integers, partition it into two sets such that it yields the minimum difference
+     * Return the difference
+     */
+    public static int problem4(int[] arr){
+        if(arr == null || arr.length == 0)
+            return 0;
+
+        return problem4_helper(arr, 0, 0, 0);
+    }
+
+    public static int problem4_helper(int[] arr, int a, int b, int idx){
+        if(idx == arr.length)
+            return Math.abs(a - b);
+        int temp = Math.min(problem4_helper(arr, a + arr[idx], b, idx + 1),
+                problem4_helper(arr, a, b + arr[idx], idx + 1));
+        return temp;
+    }
 }

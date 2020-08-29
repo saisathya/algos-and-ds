@@ -65,4 +65,12 @@ public class ProblemsTest {
         assertTrue(problem3_bottom_up_linear(Arrays.asList(1, 2, 7, 1, 5), 10));
         assertFalse(problem3_bottom_up_linear(Arrays.asList(1, 3, 4, 8), 6));
     }
+
+    @Test
+    public void testProblem4(){
+        //brute force
+        assertEquals(3, problem4(new int[]{1, 2, 3, 9}));
+        assertEquals(0, problem4(new int[]{1, 2, 7, 1, 5}));
+        assertEquals(92, problem4(new int[]{1, 3, 100, 4}));
+    }
 }
