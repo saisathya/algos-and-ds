@@ -236,4 +236,24 @@ public class Problems {
         return dp[idx][sum];
     }
 
+    public static boolean problem3_bottom_up(List<Integer>  list, int sum){
+        if((list == null || list.size() == 0) && sum != 0)
+            return false;
+        boolean[][] dp = new boolean[list.size()][sum + 1];
+        for(int i = 0; i <= sum; i++)
+            dp[0][i] = list.get(0) == i;
+
+        for(int i = 1; i < list.size(); i++){
+            for(int j = 0; j <= sum; j++){
+                if(j - list.get(i) >= 0)
+                    dp[i][j] = dp[i - 1][j - list.get(i)];
+                dp[i][j] = dp[i][j] || dp[i - 1][j];
+            }
+        }
+        return dp[list.size() - 1][sum];
+    }
+
+    public static boolean problem3_bottom_up_linear(List<Integer> list, int sum){
+
+    }
 }
