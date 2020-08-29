@@ -216,6 +216,24 @@ public class Problems {
     }
 
     public static boolean problem3_top_down(List<Integer> list, int sum){
-
+        if((list == null || list.size() == 0) && sum != 0)
+            return false;
+        Boolean[][] dp = new Boolean[list.size()][sum + 1];
+        for(int i = 0; i < dp[0].length; i++){
+            dp[0][i] = list.get(0) == i;
+        }
+        return problem3_top_down_helper(list, sum, dp, list.size() - 1);
     }
+
+    public static boolean problem3_top_down_helper(List<Integer> list, int sum, Boolean[][] dp, int idx){
+        if(sum < 0)
+            return false;
+        if(dp[idx][sum] == null){
+            boolean a = problem3_top_down_helper(list, sum , dp, idx - 1);
+            boolean b = problem3_top_down_helper(list, sum - list.get(idx), dp, idx);
+            dp[idx][sum] = a || b;
+        }
+        return dp[idx][sum];
+    }
+
 }
