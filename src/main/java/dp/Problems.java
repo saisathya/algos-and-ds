@@ -253,7 +253,18 @@ public class Problems {
         return dp[list.size() - 1][sum];
     }
 
-    public static boolean problem3_bottom_up_linear(List<Integer> list, int sum){
-
+    public static boolean problem3_bottom_up_linear(List<Integer> list, int sum) {
+        if ((list == null || list.size() == 0) && sum != 0)
+            return false;
+        boolean[] dp = new boolean[sum + 1];
+        dp[0] = true;
+        for(int i = 0; i < list.size(); i++){
+            for(int s = sum; s >= 0; s--){
+                if(!dp[s] && s - list.get(i) >= 0)
+                    dp[s] = dp[s - list.get(i)];
+            }
+        }
+        return dp[sum];
     }
+
 }

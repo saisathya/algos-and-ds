@@ -60,5 +60,9 @@ public class ProblemsTest {
         assertTrue(problem3_bottom_up(Arrays.asList(1, 2, 3, 7), 6));
         assertTrue(problem3_bottom_up(Arrays.asList(1, 2, 7, 1, 5), 10));
         assertFalse(problem3_bottom_up(Arrays.asList(1, 3, 4, 8), 6));
+        // bottom up linear space
+        assertTrue(problem3_bottom_up_linear(Arrays.asList(1, 2, 3, 7), 6));
+        assertTrue(problem3_bottom_up_linear(Arrays.asList(1, 2, 7, 1, 5), 10));
+        assertFalse(problem3_bottom_up_linear(Arrays.asList(1, 3, 4, 8), 6));
     }
 }
