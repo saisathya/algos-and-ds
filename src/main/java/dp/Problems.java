@@ -309,25 +309,37 @@ public class Problems {
                 b = problem4_alternate_helper(arr, sum, idx + 1);
         return Math.min(a, b);
     }
+
+    public static int problem4_top_down(int[] arr) {
+        if(arr == null)
+            throw new IllegalArgumentException();
+        int sum = 0;
+        Arrays.sort(arr);
+        for(int i : arr)
+            sum += i;
+        int mid = sum / 2;
+
+        Boolean[][] dp = new Boolean[arr.length][mid + 1];
+
+        for(int i = 0; i <= mid; i++)
+            dp[0][i] = arr[0] == i;
+
+        for(int i = mid; i >= 0; i--){
+            if(problem4_top_down_helper(arr, dp, i, arr.length - 1))
+                return ((mid - i) * 2) + (sum % 2);
+        }
+        return -1;
+    }
+
+    public static boolean problem4_top_down_helper(int[] arr, Boolean[][] dp, int sum, int idx){
+        if(sum < 0 || idx < 0)
+            return false;
+        if(dp[idx][sum] == null){
+            dp[idx][sum] = problem4_top_down_helper(arr, dp, sum - arr[idx], idx - 1) ||
+                    problem4_top_down_helper(arr, dp, sum, idx - 1);
+        }
+        return dp[idx][sum];
+    }
 }
 
-//    public static int problem4_top_down(int[] arr){
-//        if(arr == null)
-//            return 0;
-//        int sum = 0;
-//        for(int i : arr) sum += i;
-//        int mid = sum / 2;
-//        Boolean[][] dp = new Boolean[arr.length][mid + 1];
-//        for(int i = 0; i <= mid; i++)
-//            dp[0][i] = i == arr[0];
-//        for(int i = sum; i >= 0; i--){
-//            int temp = problem4_top_down_helper(arr, dp, arr.length - 1, i);
-//        }
-//    }
-//
-//    public static int problem4_top_down_helper(int[] arr, Boolean[][] dp, int idx, int sum){
-//        if(idx == arr.length){
-//
-//        }
-//    }
 

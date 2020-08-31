@@ -72,9 +72,16 @@ public class ProblemsTest {
         assertEquals(3, problem4(new int[]{1, 2, 3, 9}));
         assertEquals(0, problem4(new int[]{1, 2, 7, 1, 5}));
         assertEquals(92, problem4(new int[]{1, 3, 100, 4}));
+        assertEquals(0, problem4(new int[]{0, 0, 0, 0}));
         // alternate brute force
         assertEquals(3, problem4_alternate(new int[]{1, 2, 3, 9}));
         assertEquals(0, problem4_alternate(new int[]{1, 2, 7, 1, 5}));
+        assertEquals(0, problem4_alternate(new int[]{0, 0, 0, 0}));
         assertEquals(92, problem4_alternate(new int[]{1, 3, 100, 4}));
+        // top down dp
+        assertEquals(3, problem4_top_down(new int[]{1, 2, 3, 9}));
+        assertEquals(0, problem4_top_down(new int[]{1, 2, 7, 1, 5}));
+        assertEquals(0, problem4_top_down(new int[]{0, 0, 0, 0}));
+        assertEquals(92, problem4_top_down(new int[]{1, 3, 100, 4}));
     }
 }
