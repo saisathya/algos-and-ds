@@ -92,6 +92,7 @@ public class ProblemsTest {
         assertEquals(3, problem4_linear_space(new int[]{1, 2, 3, 9}));
         assertEquals(0, problem4_linear_space(new int[]{1, 2, 7, 1, 5}));
         assertEquals(0, problem4_linear_space(new int[]{0, 0, 0, 0}));
+        assertEquals(1, problem4_linear_space(new int[]{1, 0, 0, 0}));
         assertEquals(92, problem4_linear_space(new int[]{1, 3, 100, 4}));
     }
 }
