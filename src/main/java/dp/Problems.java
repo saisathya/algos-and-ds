@@ -340,6 +340,36 @@ public class Problems {
         }
         return dp[idx][sum];
     }
+
+    public static int problem4_bottom_up(int[] arr){
+        if(arr == null)
+            throw new IllegalArgumentException();
+        Arrays.sort(arr);
+        int sum = 0;
+        for(int i : arr)
+            sum += i;
+        int mid = sum / 2;
+
+        boolean[][] dp = new boolean[arr.length][mid + 1];
+
+        for(int i = 0; i <= mid; i++)
+            dp[0][i] = arr[0] == i;
+
+        for(int i = 1; i < dp.length; i++){
+            for(int j = 0; j <= mid; j++){
+                if(j - arr[i] >= 0)
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i]];
+                else
+                    dp[i][j] = dp[i - 1][j];
+            }
+        }
+
+        for(int i = mid; i >= 0; i--)
+            if(dp[arr.length - 1][i])
+                return (mid - i) * 2 + sum % 2;
+
+        return -1;
+    }
 }
 
 

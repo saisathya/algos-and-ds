@@ -83,5 +83,10 @@ public class ProblemsTest {
         assertEquals(0, problem4_top_down(new int[]{1, 2, 7, 1, 5}));
         assertEquals(0, problem4_top_down(new int[]{0, 0, 0, 0}));
         assertEquals(92, problem4_top_down(new int[]{1, 3, 100, 4}));
+        // bottom up
+        assertEquals(3, problem4_bottom_up(new int[]{1, 2, 3, 9}));
+        assertEquals(0, problem4_bottom_up(new int[]{1, 2, 7, 1, 5}));
+        assertEquals(0, problem4_bottom_up(new int[]{0, 0, 0, 0}));
+        assertEquals(92, problem4_bottom_up(new int[]{1, 3, 100, 4}));
     }
 }
