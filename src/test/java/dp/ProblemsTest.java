@@ -95,4 +95,18 @@ public class ProblemsTest {
         assertEquals(1, problem4_linear_space(new int[]{1, 0, 0, 0}));
         assertEquals(92, problem4_linear_space(new int[]{1, 3, 100, 4}));
     }
+
+    @Test
+    public void testProblem5_bruteForce(){
+        assertEquals(3, problem5(new int[]{1, 1, 2, 3}, 4));
+        assertEquals(3, problem5(new int[]{2, 3, 5, 1, 6}, 6));
+        assertEquals(3, problem5(new int[]{1, 2, 7, 1, 5}, 9));
+    }
+
+    @Test
+    public void testProblem5_top_down(){
+        assertEquals(3, problem5_top_down(new int[]{1, 1, 2, 3}, 4));
+        assertEquals(3, problem5_top_down(new int[]{2, 3, 5, 1, 6}, 6));
+        assertEquals(3, problem5_top_down(new int[]{1, 2, 7, 1, 5}, 9));
+    }
 }

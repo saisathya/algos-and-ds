@@ -397,6 +397,51 @@ public class Problems {
 
         return -1;
     }
+
+    /**
+     * Given a list of numbers, count the subsets that is equal to a sum
+     */
+    public static int problem5(int[] arr, int s) {
+        if(arr == null || s <= 0)
+            throw new IllegalArgumentException();
+        Arrays.sort(arr);
+        return problem5_helper(arr, s, 0);
+    }
+
+    public static int problem5_helper(int[] arr, int sum, int idx) {
+        int count = 0, a = 0, b = 0;
+        if(sum == 0)
+            count = 1;
+        if(arr.length == idx)
+            return count;
+        a = problem5_helper(arr, sum - arr[idx], idx + 1);
+        if(count == 0)
+            b = problem5_helper(arr, sum, idx + 1);
+        return count + a + b;
+    }
+
+    public static int problem5_top_down(int[] arr, int s){
+        if(arr == null || s <= 0)
+            throw new IllegalArgumentException();
+        Arrays.sort(arr);
+        Integer[][] dp = new Integer[arr.length][s + 1];
+        for(int i = 0 ; i <= s; i++)
+            dp[0][i] = (arr[0] == i)? 1 : 0;
+        for(int i = 0; i < arr.length; i++)
+            dp[i][0] = 1;
+        return problem5_top_down_helper(arr, dp, s, arr.length - 1);
+
+    }
+
+    public static int problem5_top_down_helper(int[] arr, Integer[][] dp, int s, int idx){
+        if(idx < 0 || s < 0)
+            return 0;
+        if(dp[idx][s] == null){
+            dp[idx][s] = problem5_top_down_helper(arr, dp, s - arr[idx], idx - 1) +
+                    problem5_top_down_helper(ar, dp, s, idx - 1);
+        }
+        return dp[idx][s];
+    }
 }
 
 
