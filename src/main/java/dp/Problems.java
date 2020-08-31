@@ -370,6 +370,33 @@ public class Problems {
 
         return -1;
     }
+
+    public static int problem4_linear_space(int[] arr){
+        if(arr == null)
+            throw new IllegalArgumentException();
+        int sum = 0;
+        for(int i : arr)
+            sum += i;
+        int mid = sum / 2;
+        boolean[] dp = new boolean[mid + 1];
+
+        /*
+        There are three conditions we need to check for:
+        1. if there exists the sum as an element in the input list, we set it to true
+        2. if in the previous iteration it is true, we remain it
+        3. if the subtract (we accept arr[i] into the current set of numbers) arr[i] returns true or false
+         */
+        for(int i = 0; i < arr.length; i++){
+            for(int j = mid; j >= arr[i]; j--)
+                dp[j] = j == arr[i] || dp[j] || dp[j - arr[i]];
+        }
+
+        for(int i = mid; i >= 0; i--)
+            if(dp[i])
+                return (mid - i) * 2 + sum % 2;
+
+        return -1;
+    }
 }
 
 
