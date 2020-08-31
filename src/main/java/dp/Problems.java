@@ -438,7 +438,7 @@ public class Problems {
             return 0;
         if(dp[idx][s] == null){
             dp[idx][s] = problem5_top_down_helper(arr, dp, s - arr[idx], idx - 1) +
-                    problem5_top_down_helper(ar, dp, s, idx - 1);
+                    problem5_top_down_helper(arr, dp, s, idx - 1);
         }
         return dp[idx][s];
     }
