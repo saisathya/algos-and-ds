@@ -442,6 +442,27 @@ public class Problems {
         }
         return dp[idx][s];
     }
+
+    public static int problem5_bottom_up(int[] arr, int s){
+        if(arr == null || s <= 0)
+            throw new IllegalArgumentException();
+        Arrays.sort(arr);
+        int[][] dp = new int[arr.length][s + 1];
+        for(int i = 0; i <= s; i++)
+            dp[0][i] = (i == arr[0])? 1 : 0;
+        for(int i = 0; i < arr.length; i++)
+            dp[i][0] = 1;
+
+        for(int i = 1; i < arr.length; i++){
+            for(int j = 0; j <= s; j++){
+                dp[i][j] = dp[i - 1][j];
+                if(j - arr[i] >= 0)
+                    dp[i][j] += dp[i - 1][j - arr[i]];
+            }
+        }
+
+        return dp[arr.length - 1][s];
+    }
 }
 
 
