@@ -123,4 +123,10 @@ public class ProblemsTest {
         assertEquals(3, problem5_bottom_up_linear_space(new int[]{2, 3, 5, 1, 6}, 6));
         assertEquals(3, problem5_bottom_up_linear_space(new int[]{1, 2, 7, 1, 5}, 9));
     }
+
+    @Test
+    public void testProblem6_brute_force(){
+        assertEquals(3, problem6_brute_force(new int[]{1, 1, 2, 3}, 1));
+        assertEquals(2, problem6_brute_force(new int[]{1, 2, 7, 1}, 9));
+    }
 }

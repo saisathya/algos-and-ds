@@ -479,6 +479,25 @@ public class Problems {
         }
         return dp[s];
     }
+
+    /**
+     * You are given a list of positive numbers. For each number we can make subsets by either taking its value or taking the additive inverse. Find the number
+     * of ways to make the desired sum
+     */
+    public static int problem6_brute_force(int[] arr, int s){
+        if(arr == null)
+            throw new IllegalArgumentException();
+
+        return problem6_brute_force_helper(arr, s, 0, 0);
+    }
+
+    public static int problem6_brute_force_helper(int[] arr, int s, int acc, int idx){
+        if(arr.length == idx)
+            return s == acc? 1 : 0;
+        int a = problem6_brute_force_helper(arr, s, acc + arr[idx], idx + 1);
+        int b = problem6_brute_force_helper(arr, s, acc - arr[idx], idx + 1);
+        return a + b;
+    }
 }
 
 
