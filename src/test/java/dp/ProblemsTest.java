@@ -116,4 +116,11 @@ public class ProblemsTest {
         assertEquals(3, problem5_bottom_up(new int[]{2, 3, 5, 1, 6}, 6));
         assertEquals(3, problem5_bottom_up(new int[]{1, 2, 7, 1, 5}, 9));
     }
+
+    @Test
+    public void testProblem5_bottom_up_linear_space(){
+        assertEquals(3, problem5_bottom_up_linear_space(new int[]{1, 1, 2, 3}, 4));
+        assertEquals(3, problem5_bottom_up_linear_space(new int[]{2, 3, 5, 1, 6}, 6));
+        assertEquals(3, problem5_bottom_up_linear_space(new int[]{1, 2, 7, 1, 5}, 9));
+    }
 }

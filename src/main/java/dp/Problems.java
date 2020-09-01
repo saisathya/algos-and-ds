@@ -463,6 +463,22 @@ public class Problems {
 
         return dp[arr.length - 1][s];
     }
+
+    public static int problem5_bottom_up_linear_space(int[] arr, int s){
+        if(arr == null || s <= 0)
+            throw new IllegalArgumentException();
+
+        int[] dp = new int[s + 1];
+        for(int i = 0; i <= s; i++)
+            dp[i] = i == arr[0]? 1 : 0;
+        dp[0] = 1;
+        for(int i = 1; i < arr.length; i++){
+            for(int j = s; j >= arr[i]; j--){
+                dp[j] += dp[j - arr[i]];
+            }
+        }
+        return dp[s];
+    }
 }
 
 
