@@ -492,7 +492,7 @@ public class Problems {
     }
 
     public static int problem6_brute_force_helper(int[] arr, int s, int acc, int idx){
-        if(arr.length == idx)
+        if(arr.length == idx || s <= 0)
             return s == acc? 1 : 0;
         int a = problem6_brute_force_helper(arr, s, acc + arr[idx], idx + 1);
         int b = problem6_brute_force_helper(arr, s, acc - arr[idx], idx + 1);
