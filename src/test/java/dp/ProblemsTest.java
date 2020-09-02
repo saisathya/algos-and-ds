@@ -130,9 +130,4 @@ public class ProblemsTest {
         assertEquals(2, problem6_brute_force(new int[]{1, 2, 7, 1}, 9));
     }
 
-    @Test
-    public void testProblem6_top_down(){
-        assertEquals(3, problem6_top_down(new int[]{1, 1, 2, 3}, 1));
-        assertEquals(2, problem6_top_down(new int[]{1, 2, 7, 1}, 9));
-    }
 }

@@ -485,6 +485,13 @@ public class Problems {
      * of ways to make the desired sum
      */
     public static int problem6_brute_force(int[] arr, int s){
+        /*
+         * The trick with this problem is that we can divided the set into two subsets because we have to use all elements.
+         * The sum of elements from the first set will be S1 and the sum of the elements of the second set will be S2.
+         * We will want to solve the equation S1 - S2 = s, this equation is always guaranteed.
+         * Note that the sum of all elements S = S1 + S2 -> S1 = (S + s)/2
+         * We can simplify this problem to find the number of subsets with sum of (S + s)/2
+         */
         if(arr == null)
             throw new IllegalArgumentException();
 
