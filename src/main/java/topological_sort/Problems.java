@@ -44,4 +44,43 @@ public class Problems {
         }
         return output;
     }
+
+    /**
+     * Given a directed graph with N nodes, and a list of edges going from U -> V,
+     * determine if the graph has a cycle.
+     * Return true if the graph does not have a cycle
+     */
+    public static boolean problem2(int n, int[][] edges){
+        if(n <= 0 || edges == null)
+            throw new IllegalArgumentException();
+
+        Map<Integer, Set<Integer>> adjList = new HashMap<>();
+        Map<Integer, Integer> inDegree = new HashMap<>();
+        for(int i = 0; i < n; i++){
+            adjList.put(i, new HashSet<>());
+            inDegree.put(i, 0);
+        }
+        for(int[] edge : edges){
+            adjList.get(edge[0]).add(edge[1]);
+            inDegree.put(edge[1], inDegree.get(edge[1]) + 1);
+        }
+        LinkedList<Integer> q = new LinkedList<>();
+        for(Map.Entry<Integer, Integer> entry : inDegree.entrySet()){
+            if(entry.getValue() == 0)
+                q.offer(entry.getKey());
+        }
+        int count = 0;
+        while(!q.isEmpty()){
+            int i = q.poll();
+            count++;
+            Set<Integer> set = adjList.get(i);
+            for(int j : set){
+                inDegree.put(j, inDegree.get(j) - 1);
+                if(inDegree.get(j) ==  0)
+                    q.offer(j);
+            }
+        }
+
+        return count == n;
+    }
 }
