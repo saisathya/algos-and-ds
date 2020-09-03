@@ -18,12 +18,17 @@ public class ProblemsTest {
 
     @Test
     public void testProblem2(){
-        assertTrue( problem2(4, new int[][]{array(3, 2), array(3, 0), array(2, 0), array(2, 1)}));
-        assertTrue(problem2(5, new int[][]{array(4, 2), array(4, 3), array(2, 0), array(2, 1), array(3, 1)}));
-        assertFalse(problem2(7, new int[][]{array(6, 4), array(6, 2), array(5, 3), array(5, 4), array(3, 0), array(3, 1), array(3, 2),
-                        array(4, 1), array(1, 4)}));
+        assertTrue( problem2(4, array(array(3, 2), array(3, 0), array(2, 0), array(2, 1))));
+        assertTrue(problem2(5, array(array(4, 2), array(4, 3), array(2, 0), array(2, 1), array(3, 1))));
+        assertFalse(problem2(7, array(array(6, 4), array(6, 2), array(5, 3), array(5, 4), array(3, 0), array(3, 1), array(3, 2),
+                        array(4, 1), array(1, 4)));
     }
+
     static int[] array(int ...a){
        return a;
+    }
+
+    static int[][] array(int[] ...a){
+        return a;
     }
 }
