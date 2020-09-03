@@ -47,8 +47,20 @@ public class ProblemsTest {
                         Arrays.asList(1, 3, 2, 0, 5, 4),
                         Arrays.asList(1, 3, 2, 0, 4, 5)));
     }
+
+    @Test
+    public void testProblem4(){
+        assertEquals("bac", problem4(array("ba", "bc", "ac", "cab")));
+        assertEquals("cab", problem4(array("cab", "aaa", "aab")));
+        assertEquals("ywxz", problem4(array("ywx", "wz", "xww", "xz", "zyy", "zwz")));
+    }
+
     static int[] array(int ...a){
        return a;
+    }
+
+    static String[] array(String ...s){
+        return s;
     }
 
     static int[][] array(int[] ...a){

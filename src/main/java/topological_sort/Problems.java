@@ -128,4 +128,52 @@ public class Problems {
         }
         return output;
     }
+
+    /**
+     * You are given a dictionary of words that is sorted in custom lexicographical order
+     * Your job is to return the order of the alphabets in this language
+     */
+    public static String problem4(String[] words){
+        if(words == null || words.length <= 2)
+            throw new IllegalArgumentException();
+        Map<Character, List<Character>> adjList = new HashMap<>();
+        Map<Character, Integer> inDegree = new HashMap<>();
+        for(String s : words){
+            for(char c : s.toCharArray()){
+                adjList.put(c, new ArrayList<>());
+                inDegree.put(c, 0);
+            }
+        }
+
+        for(int i = 1; i < words.length; i++){
+            String word1 = words[i - 1], word2 = words[i];
+            int length = Math.min(word1.length(), word2.length());
+            for(int j = 0; j < length; j++){
+                char parent = word1.charAt(j), child = word2.charAt(j);
+                if(parent != child){
+                    adjList.get(parent).add(child);
+                    inDegree.put(child, inDegree.get(child) + 1);
+                    break;
+                }
+            }
+        }
+        LinkedList<Character> q = new LinkedList<>();
+        for(Map.Entry<Character, Integer> entry : inDegree.entrySet()){
+            if(entry.getValue() == 0)
+                q.offer(entry.getKey());
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!q.isEmpty()){
+            char c = q.poll();
+            sb.append(c);
+            List<Character> chars = adjList.get(c);
+            for(char ch : chars){
+                inDegree.put(ch, inDegree.get(ch) - 1);
+                if(inDegree.get(ch) == 0)
+                    q.offer(ch);
+            }
+        }
+        return sb.toString();
+    }
+
 }
