@@ -21,9 +21,32 @@ public class ProblemsTest {
         assertTrue( problem2(4, array(array(3, 2), array(3, 0), array(2, 0), array(2, 1))));
         assertTrue(problem2(5, array(array(4, 2), array(4, 3), array(2, 0), array(2, 1), array(3, 1))));
         assertFalse(problem2(7, array(array(6, 4), array(6, 2), array(5, 3), array(5, 4), array(3, 0), array(3, 1), array(3, 2),
-                        array(4, 1), array(1, 4)));
+                        array(4, 1), array(1, 4))));
     }
 
+    @Test
+    public void testProblem3(){
+        assertThat(problem3(3,array(array(0,1), array(1, 2))), containsInAnyOrder(Arrays.asList(0, 1, 2)));
+        assertThat(
+                problem3(4, array(array(3,2),array(3,0),array(2,0),array(2,1))),
+                containsInAnyOrder(Arrays.asList(3,2,0,1), Arrays.asList(3,2,1,0)));
+        assertThat(
+                problem3(6, array(array(2, 5), array(0, 5), array(0, 4), array(1, 4), array(3, 2), array(1, 3))),
+                containsInAnyOrder(
+                        Arrays.asList(0, 1, 4, 3, 2, 5),
+                        Arrays.asList(0, 1, 3, 4, 2, 5),
+                        Arrays.asList(0, 1, 3, 2, 4, 5),
+                        Arrays.asList(0, 1, 3, 2, 5, 4),
+                        Arrays.asList(1, 0, 3, 4, 2, 5),
+                        Arrays.asList(1, 0, 3, 2, 4, 5),
+                        Arrays.asList(1, 0, 3, 2, 5, 4),
+                        Arrays.asList(1, 0, 4, 3, 2, 5),
+                        Arrays.asList(1, 3, 0, 2, 4, 5),
+                        Arrays.asList(1, 3, 0, 2, 5, 4),
+                        Arrays.asList(1, 3, 0, 4, 2, 5),
+                        Arrays.asList(1, 3, 2, 0, 5, 4),
+                        Arrays.asList(1, 3, 2, 0, 4, 5)));
+    }
     static int[] array(int ...a){
        return a;
     }
