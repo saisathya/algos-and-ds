@@ -176,4 +176,55 @@ public class Problems {
         return sb.toString();
     }
 
+    /**
+     * You are given a list of numbers and a list of valid sequences. The sequences [v1, v2] indicate that v2 can only occur
+     * after v1 in the list of numbers given. Return true if the sequences yield a unique list
+     */
+    public static boolean problem5(int[] list, int[][] seqs){
+        if(list == null || seqs == null)
+            throw new IllegalArgumentException();
+
+        Map<Integer, List<Integer>> adjList = new HashMap<>();
+        Map<Integer, Integer> inDegree = new HashMap<>();
+        for(int i : list){
+            adjList.put(i, new ArrayList<>());
+            inDegree.put(i, 0);
+        }
+
+        for(int[] seq : seqs){
+            adjList.get(seq[0]).add(seq[1]);
+            inDegree.put(seq[1], inDegree.get(seq[1]) + 1);
+        }
+
+        Queue<Integer> q = new ArrayDeque<>();
+        for(Map.Entry<Integer, Integer> entry : inDegree.entrySet()){
+            if(entry.getValue() == 0)
+                q.offer(entry.getKey());
+        }
+        int count = 0;
+        while(!q.isEmpty()){
+            if(q.size() > 1)
+                return false;
+            count++;
+            int key= q.poll();
+            List<Integer> neighbors = adjList.get(key);
+            for(int i : neighbors){
+                inDegree.put(i , inDegree.get(i) - 1);
+                if(inDegree.get(i) == 0)
+                    q.offer(i);
+            }
+        }
+        return count == list.length;
+    }
+
+    /**
+     * You are given the edges for an undirected tree
+     * Your goal is to find the minimum height you can reconstruct the tree
+     */
+    public static int problem6(int n, int[][] edges){
+        if(edges == null)
+            throw new IllegalArgumentException();
+
+    }
+
 }

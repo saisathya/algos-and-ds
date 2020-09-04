@@ -55,6 +55,18 @@ public class ProblemsTest {
         assertEquals("ywxz", problem4(array("ywx", "wz", "xww", "xz", "zyy", "zwz")));
     }
 
+    @Test
+    public void testProblem5(){
+        assertTrue(problem5(array(1, 2, 3, 4), array(array(1, 2), array(2, 3), array(3, 4))));
+        assertTrue(problem5(array(1, 2, 3, 4), array(array(1, 2), array(2, 3), array(2, 4))));
+    }
+
+    @Test
+    public void testProblem6(){
+        assertEquals(3, problem6(5, array(array(0, 1), array(1, 2), array(1, 3), array(2, 4))));
+
+    }
+
     static int[] array(int ...a){
        return a;
     }
