@@ -221,10 +221,45 @@ public class Problems {
      * You are given the edges for an undirected tree
      * Your goal is to find the minimum height you can reconstruct the tree
      */
-    public static int problem6(int n, int[][] edges){
-        if(edges == null)
+    public static List<Integer> problem6(int n, int[][] edges){
+        if(edges == null || n <= 0)
             throw new IllegalArgumentException();
+        Map<Integer, List<Integer>> adjList = new HashMap<>();
+        Map<Integer, Integer> outDegree = new HashMap<>();
+        for(int i = 0; i < n; i++){
+            adjList.put(i, new ArrayList<>());
+            outDegree.put(i, 0);
+        }
 
+        for(int[] edge : edges){
+            adjList.get(edge[0]).add(edge[1]);
+            adjList.get(edge[1]).add(edge[0]);
+            outDegree.put(edge[0], outDegree.get(edge[0]) + 1);
+            outDegree.put(edge[1], outDegree.get(edge[1]) + 1);
+        }
+
+        Queue<Integer> q = new ArrayDeque<>();
+        for(Map.Entry<Integer, Integer> entry : outDegree.entrySet()){
+            if(entry.getValue() == 1)
+                q.offer(entry.getKey());
+        }
+        int nodesRemaining = n;
+        while(nodesRemaining > 2){
+            int length = q.size();
+            nodesRemaining -= length;
+            for(int i = 0; i < length; i++){
+                int vertex = q.poll();
+                List<Integer> neighbors = adjList.get(vertex);
+                for(int j : neighbors){
+                    if(outDegree.containsKey(j)){
+                        outDegree.put(j, outDegree.get(j) - 1);
+                        if(outDegree.get(j) == 1)
+                            q.offer(j);
+                    }
+                }
+            }
+        }
+        return new ArrayList<>(q);
     }
 
 }
