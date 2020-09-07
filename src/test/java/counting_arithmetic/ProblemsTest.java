@@ -1,10 +1,9 @@
-package counting;
+package counting_arithmetic;
 
 import org.junit.Test;
-import java.util.*;
+
 import static org.junit.Assert.*;
-import static org.hamcrest.collection.IsIterableContainingInAnyOrder.*;
-import static counting.Problems.*;
+import static counting_arithmetic.Problems.*;
 
 public class ProblemsTest {
     @Test

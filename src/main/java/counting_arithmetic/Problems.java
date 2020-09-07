@@ -1,4 +1,4 @@
-package counting;
+package counting_arithmetic;
 
 public class Problems {
     /**
@@ -31,5 +31,33 @@ public class Problems {
             ans += (right * left) + (i - left)*(arr.length - i - right - 1);
         }
         return ans;
+    }
+
+    /** https://leetcode.com/problems/k-concatenation-maximum-sum/submissions/
+     * Given a list and an integer k, find the max subarray sum when you have concatenated the list k times
+     */
+    public static int problem2(int[] arr, int k){
+        if(arr == null)
+            throw new IllegalArgumentException();
+        long prefix = Long.MIN_VALUE, suffix = Long.MIN_VALUE, leftSum = 0, rightSum = 0;
+
+        for(int i = 0, j = arr.length - 1; i < arr.length; j--, i++){
+            leftSum = (leftSum + arr[i]) % 1_000_000_007;
+            rightSum = (rightSum + arr[j]) % 1_000_000_007;
+            prefix = Math.max(prefix, leftSum);
+            suffix = Math.max(suffix, rightSum);
+        }
+
+        long mid = Math.max(leftSum, 0) * (k - 2) % 1_000_000_007;
+        return (int) Math.max((prefix + suffix + mid) % 1_000_000_007, maxSubarray(arr));
+    }
+
+    public static int maxSubarray(int[] arr){
+        int sum = 0, max = Integer.MIN_VALUE;
+        for(int i : arr){
+            sum = Math.max(sum, 0) + i;
+            max = Math.max(sum, max);
+        }
+        return max;
     }
 }
