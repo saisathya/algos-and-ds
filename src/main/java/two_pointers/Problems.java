@@ -232,4 +232,27 @@ public class Problems {
         }
         return right - left + 1;
     }
+
+    /** https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
+     * Given an unsorted array, find the shortest interval so that if it is sorted you will get a sorted array
+     */
+    public static int problem10(int[] arr){
+        if(arr == null || arr.length <= 1)
+            return 0;
+        int right = 0, max = 0;
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] < arr[max])
+                right = i;
+            else
+                max = i;
+        }
+        int left = arr.length - 1, min = arr.length - 1;
+        for(int i = arr.length - 1; i  >= 0; i--){
+            if(arr[i] > arr[min])
+                left = i;
+            else
+                min = i;
+        }
+        return Math.max(0, right - left + 1);
+    }
 }

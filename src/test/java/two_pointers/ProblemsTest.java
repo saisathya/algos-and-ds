@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.util.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.*;
+import static two_pointers.Problems.*;
 public class ProblemsTest {
 
     @Test
@@ -80,5 +81,11 @@ public class ProblemsTest {
         assertEquals(0, Problems.problem9(new int[]{1, 2, 3}));
         assertEquals(5, Problems.problem9(new int[]{1, 3, 2, 0, -1, 7, 10}));
         assertEquals(3, Problems.problem9(new int[]{3, 2, 1}));
+    }
+
+    @Test
+    public void testPorblem10(){
+        assertEquals(5, problem10(new int[]{2, 6, 4, 8, 10, 9, 15}));
+        assertEquals(0, problem10(new int[]{1, 2, 3, 4, 5, 6, 7}));
     }
 }
