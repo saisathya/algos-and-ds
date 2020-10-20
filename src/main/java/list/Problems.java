@@ -1,5 +1,7 @@
 package list;
 
+import java.util.*;
+
 public class Problems {
     /**
      * Given a list of stock prices for their respective day, find the max profit you can achieve by buying and selling a stock
@@ -14,10 +16,22 @@ public class Problems {
                 maxPrice = prices[i];
             }
             else{
-                maxProfit = maxPrice - prices[i];
+                maxProfit = Math.max(maxPrice - prices[i], maxProfit);
             }
         }
 
         return maxProfit == Integer.MIN_VALUE? 0 : maxProfit;
+    }
+
+    /**
+     * Given a list of integers, return true if all elements are distinct
+     */
+    public static boolean problem2(int[] nums){
+        if(nums == null || nums.length == 0)
+            return true;
+        Set<Integer> set = new HashSet<>();
+        for(int i : nums) set.add(i);
+
+        return set.size() == nums.length;
     }
 }
